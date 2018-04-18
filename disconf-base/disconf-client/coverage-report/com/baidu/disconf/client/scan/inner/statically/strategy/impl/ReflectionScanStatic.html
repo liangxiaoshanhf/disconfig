@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ReflectionScanStatic.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\scan\inner\statically\strategy\impl\ReflectionScanStatic.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.scan.inner.statically.strategy.impl;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.reflections.Reflections;
+import org.reflections.scanners.FieldAnnotationsScanner;
+import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.scanners.MethodParameterScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.annotations.DisconfActiveBackupService;
+import com.baidu.disconf.client.common.annotations.DisconfFile;
+import com.baidu.disconf.client.common.annotations.DisconfFileItem;
+import com.baidu.disconf.client.common.annotations.DisconfItem;
+import com.baidu.disconf.client.common.annotations.DisconfUpdateService;
+import com.baidu.disconf.client.common.constants.Constants;
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+import com.baidu.disconf.client.scan.inner.common.ScanVerify;
+import com.baidu.disconf.client.scan.inner.statically.model.ScanStaticModel;
+import com.baidu.disconf.client.scan.inner.statically.strategy.ScanStaticStrategy;
+import com.google.common.base.Predicate;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * Created by knightliao on 15/1/23.
+ * &lt;p/>
+ * 扫描静态注解，并且进行分析整合数据
+ * &lt;p/>
+ * 使用 Reflection Lib
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>public class ReflectionScanStatic implements ScanStaticStrategy {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(ScanStaticStrategy.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 扫描想要的类
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public ScanStaticModel scan(List&lt;String> packNameList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 基本信息</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>        ScanStaticModel scanModel = scanBasicInfo(packNameList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 分析</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        analysis(scanModel);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>        return scanModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 通过扫描，获取反射对象
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Reflections getReflection(List&lt;String> packNameList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // filter</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        FilterBuilder filterBuilder = new FilterBuilder().includePackage(Constants.DISCONF_PACK_NAME);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>        for (String packName : packNameList) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>            filterBuilder = filterBuilder.includePackage(packName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>        Predicate&lt;String> filter = filterBuilder;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // urls</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l82s0'>        Collection&lt;URL> urlTotals = new ArrayList&lt;URL>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>        for (String packName : packNameList) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l84s0'>            Set&lt;URL> urls = ClasspathHelper.forPackage(packName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>            urlTotals.addAll(urls);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l89s0'>        Reflections reflections = new Reflections(new ConfigurationBuilder().filterInputsBy(filter)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>                .setScanners(new SubTypesScanner().filterResultsBy(filter),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>                        new TypeAnnotationsScanner()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>                                .filterResultsBy(filter),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>                        new FieldAnnotationsScanner()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>                                .filterResultsBy(filter),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l95s0'>                        new MethodAnnotationsScanner()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>                                .filterResultsBy(filter),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>                        new MethodParameterScanner()).setUrls(urlTotals));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l99s0'>        return reflections;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 分析出一些关系 出来
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void analysis(ScanStaticModel scanModel) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 分析出配置文件MAP</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l108s0'>        analysis4DisconfFile(scanModel);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 分析出配置文件与配置文件中的Field的Method的MAP
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void analysis4DisconfFile(ScanStaticModel scanModel) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l116s0 l134s0 l141s0 l151s0 l172s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l116s0 l134s0 l135s0 l151s0 l172s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>        Map&lt;Class&lt;?>, Set&lt;Method>> disconfFileItemMap = new HashMap&lt;Class&lt;?>, Set&lt;Method>>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>118</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 配置文件MAP</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>        Set&lt;Class&lt;?>> classdata = scanModel.getDisconfFileClassSet();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l122s0'>        for (Class&lt;?> classFile : classdata) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l123s0'>            disconfFileItemMap.put(classFile, new HashSet&lt;Method>());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 将配置文件与配置文件中的配置项进行关联</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>        Set&lt;Method> af1 = scanModel.getDisconfFileItemMethodSet();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l130s0'>        for (Method method : af1) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l132s0'>            Class&lt;?> thisClass = method.getDeclaringClass();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l134s0' title='Executions: 0' class='uncovered'>if (disconfFileItemMap.containsKey(thisClass)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>                Set&lt;Method> fieldSet = disconfFileItemMap.get(thisClass);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l136s0'>                fieldSet.add(method);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l137s0'>                disconfFileItemMap.put(thisClass, fieldSet);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l139s0'>            } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>141</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l141s0'>                LOGGER.error("cannot find CLASS ANNOTATION " + DisconfFile.class.getName()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l142s0'>                        + " for disconf file item: " +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l143s0'>                        method.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>147</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 最后的校验</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>        Iterator&lt;Class&lt;?>> iterator = disconfFileItemMap.keySet().iterator();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l151s0'>        while (iterator.hasNext()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>            Class&lt;?> classFile = iterator.next();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>155</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 校验是否所有配置文件都含有配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l156s0' title='Executions: 0' class='uncovered'>if (disconfFileItemMap.get(classFile).isEmpty()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>157</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l157s0'>                LOGGER.info("disconf file hasn't any items: " + classFile.getName());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l158s0'>                continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 校验配置文件类型是否合适(目前只支持.properties类型)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l162s0'>            DisconfFile disconfFile = classFile.getAnnotation(DisconfFile.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>163</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l163s0'>            boolean fileTypeRight = ScanVerify.isDisconfFileTypeRight(disconfFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>164</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l164s0' title='Executions: 0' class='uncovered'>if (!fileTypeRight)</span> <span id='l164s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>165</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l165s0'>                LOGGER.warn("now do not support this file type" + disconfFile.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>170</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 设置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l171s0'>        scanModel.setDisconfFileItemMap(disconfFileItemMap);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l172s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 扫描基本信息
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private ScanStaticModel scanBasicInfo(List&lt;String> packNameList) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l179s0 l221s0 l226s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l179s0 l221s0 l221s1 l226s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l179s0 l221s0 l221s1 l222s0 l226s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>179</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l179s0'>        ScanStaticModel scanModel = new ScanStaticModel();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>181</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>182</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 扫描对象</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l184s0'>        Reflections reflections = getReflection(packNameList);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l185s0'>        scanModel.setReflections(reflections);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取DisconfFile class</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>        Set&lt;Class&lt;?>> classdata = reflections.getTypesAnnotatedWith(DisconfFile.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l191s0'>        scanModel.setDisconfFileClassSet(classdata);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取DisconfFileItem method</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>196</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l196s0'>        Set&lt;Method> af1 = reflections.getMethodsAnnotatedWith(DisconfFileItem.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>197</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l197s0'>        scanModel.setDisconfFileItemMethodSet(af1);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取DisconfItem method</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>        af1 = reflections.getMethodsAnnotatedWith(DisconfItem.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l203s0'>        scanModel.setDisconfItemMethodSet(af1);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>205</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取DisconfActiveBackupService</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l208s0'>        classdata = reflections.getTypesAnnotatedWith(DisconfActiveBackupService.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l209s0'>        scanModel.setDisconfActiveBackupServiceClassSet(classdata);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>211</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取DisconfUpdateService</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>214</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l214s0'>        classdata = reflections.getTypesAnnotatedWith(DisconfUpdateService.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>215</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l215s0'>        scanModel.setDisconfUpdateService(classdata);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>217</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // update pipeline</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l218s0'>        Set&lt;Class&lt;? extends IDisconfUpdatePipeline>> iDisconfUpdatePipeline = reflections.getSubTypesOf</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>219</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l219s0'>                (IDisconfUpdatePipeline</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        .class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l221s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdatePipeline != null</span> && <span id='l221s1' title='Executions: 0' class='uncovered'>iDisconfUpdatePipeline.size() != 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l222s0'>            scanModel.setiDisconfUpdatePipeline((Class&lt;IDisconfUpdatePipeline>) iDisconfUpdatePipeline</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>                    .toArray()[0]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>226</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l226s0'>        return scanModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

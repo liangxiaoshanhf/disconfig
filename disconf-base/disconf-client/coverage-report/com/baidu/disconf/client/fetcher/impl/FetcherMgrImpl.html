@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - FetcherMgrImpl.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\fetcher\impl\FetcherMgrImpl.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.fetcher.impl;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.fetcher.FetcherMgr;
+import com.baidu.disconf.core.common.constants.Constants;
+import com.baidu.disconf.core.common.json.ValueVo;
+import com.baidu.disconf.core.common.restful.RestfulMgr;
+import com.baidu.disconf.core.common.restful.core.RemoteUrl;
+import com.baidu.disconf.core.common.utils.OsUtil;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 抓取器, 独立模块，不依赖外部模块, 由Factory来管理此实例
+ *
+ * @author liaoqiqi
+ * @version 2014-7-29
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class FetcherMgrImpl implements FetcherMgr {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(FetcherMgrImpl.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 获取远程配置 重试次数</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l28s0'>    private int <span class='instance uncovered' title='Reads: 0 Writes: 0'>retryTime</span> = 3;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 获取远程配置 重试时休眠时间</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l31s0'>    private int <span class='instance uncovered' title='Reads: 0 Writes: 0'>retrySleepSeconds</span> = 5;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 下载的文件会被迁移到classpath根路径下</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>    private boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>enableLocalDownloadDirInClassPath</span> = true;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 下载文件夹, 远程文件下载后会放在这里</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>localDownloadDir</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // temp 临时目录</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>localDownloadDirTemp</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>42</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>    private List&lt;String> <span class='instance uncovered' title='Reads: 0 Writes: 0'>hostList</span> = new ArrayList&lt;String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // result tool</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>    private RestfulMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>restfulMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 创建对象</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>    public FetcherMgrImpl(RestfulMgr restfulMgr, int retryTime, int retrySleepSeconds,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                          boolean enableLocalDownloadDirInClassPath, String localDownloadDir, String</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                  localDownloadDirTemp, List&lt;String></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                  hostList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>        this.restfulMgr = restfulMgr;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>58</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l58s0'>        this.retrySleepSeconds = retrySleepSeconds;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        this.retryTime = retryTime;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l60s0'>        this.enableLocalDownloadDirInClassPath = enableLocalDownloadDirInClassPath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>        this.localDownloadDir = localDownloadDir;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l62s0'>        this.localDownloadDirTemp = localDownloadDirTemp;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>        OsUtil.makeDirs(this.localDownloadDir);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>        this.hostList = hostList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 根据 URL 从远程 获取Value值
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getValueFromServer(String url) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 远程地址</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l74s0 l79s0 l80s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l74s0 l79s0 l83s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>        RemoteUrl remoteUrl = new RemoteUrl(url, hostList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l76s0'>        ValueVo confItemVo = restfulMgr.getJsonData(ValueVo.class, remoteUrl, retryTime, retrySleepSeconds);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>        LOGGER.debug("remote server return: " + confItemVo.toString());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l79s0' title='Executions: 0' class='uncovered'>if (confItemVo.getStatus().equals(Constants.NOTOK)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>            throw new Exception("status is not ok.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>        return confItemVo.getValue();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 下载配置文件, remoteUrl是 url
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String downloadFileFromServer(String url, String fileName, String targetFileDir) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 下载的路径</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>        String localDir = getLocalDownloadDirPath();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 设置远程地址</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>        RemoteUrl remoteUrl = new RemoteUrl(url, hostList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 下载</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>        return restfulMgr</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l101s0'>                .downloadFromServer(remoteUrl, fileName, localDir, localDownloadDirTemp, targetFileDir,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l102s0'>                        enableLocalDownloadDirInClassPath,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l103s0'>                        retryTime,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l104s0'>                        retrySleepSeconds);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取本地下载的路径DIR, 通过参数判断是否是临时路径
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String getLocalDownloadDirPath() throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l115s0 l117s0 l121s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l115s0 l117s0 l118s0 l121s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l115s0'>        String localUrl = localDownloadDir;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>117</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l117s0' title='Executions: 0' class='uncovered'>if (!new File(localUrl).exists()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l118s0'>            new File(localUrl).mkdirs();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>        return localUrl;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void release() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l127s0'>        restfulMgr.close();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfCenterBaseModel.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\common\model\DisconfCenterBaseModel.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.common.model;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置基类
+ *
+ * @author liaoqiqi
+ * @version 2014-8-4
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>9</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l9s0'>public abstract class DisconfCenterBaseModel {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>11</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 所在类实体</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>12</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Object <span class='instance uncovered' title='Reads: 0 Writes: 0'>object</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>14</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 远程配置服务的URL路径,不包含IP和PORT的</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>15</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>remoteServerUrl</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>17</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 通用配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>18</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l18s0'>    private DisConfCommonModel <span class='instance uncovered' title='Reads: 0 Writes: 0'>disConfCommonModel</span> = new DisConfCommonModel();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 回调函数</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>    private DisconfCommonCallbackModel <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfCommonCallbackModel</span> = new DisconfCommonCallbackModel();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public DisConfCommonModel getDisConfCommonModel() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>        return disConfCommonModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisConfCommonModel(DisConfCommonModel disConfCommonModel) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l28s0'>        this.disConfCommonModel = disConfCommonModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l29s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public DisconfCommonCallbackModel getDisconfCommonCallbackModel() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l32s0'>        return disconfCommonCallbackModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfCommonCallbackModel(DisconfCommonCallbackModel disconfCommonCallbackModel) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>        this.disconfCommonCallbackModel = disconfCommonCallbackModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l37s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getRemoteServerUrl() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>        return remoteServerUrl;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setRemoteServerUrl(String remoteServerUrl) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>        this.remoteServerUrl = remoteServerUrl;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Object getObject() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>        return object;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setObject(Object object) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>        this.object = object;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>        return "\n\tDisconfCenterBaseModel [\n\tobject=" + object + "\n\tremoteServerUrl=" + remoteServerUrl +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l58s0'>                   "\n\tdisConfCommonModel=" + disConfCommonModel + "\n\tdisconfCommonCallbackModel=" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>                   disconfCommonCallbackModel + "]";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String infoString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>        return "\n\tremoteServerUrl=" + remoteServerUrl;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ReloadConfigurationMonitor.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\addons\properties\ReloadConfigurationMonitor.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.addons.properties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.ArrayList;
+import java.util.List;
+import java.util.TimerTask;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 有两种监控方式
+ * 1. 使用timer, 定时进行check
+ * 2. 当事件触发时，直调用 ReloadConfigurationMonitor.reload
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>15</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l15s0'>public class ReloadConfigurationMonitor extends TimerTask {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>17</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l17s0'>    protected static final Logger logger = LoggerFactory.getLogger(ReloadConfigurationMonitor.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>19</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l19s0'>    private static List&lt;ReconfigurableBean> <span class='static uncovered' title='Reads: 0 Writes: 0'>reconfigurableBeans</span> = new ArrayList&lt;ReconfigurableBean>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void addReconfigurableBean(ReconfigurableBean reconfigurableBean) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l22s0'>        reconfigurableBeans.add(reconfigurableBean);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void run() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l26s0'>        reload();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void reload() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l31s0'>        for (ReconfigurableBean bean : reconfigurableBeans) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>                bean.reloadConfiguration();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>                logger.warn("while reloading configuration of " + bean, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

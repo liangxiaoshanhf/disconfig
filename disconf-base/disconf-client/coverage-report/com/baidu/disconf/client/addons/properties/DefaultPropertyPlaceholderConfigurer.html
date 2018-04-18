@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DefaultPropertyPlaceholderConfigurer.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\addons\properties\DefaultPropertyPlaceholderConfigurer.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.addons.properties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.Properties;
+
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * A property resource configurer that resolves placeholders with defaults in bean property values of
+ * context definitions. It &lt;i>pulls&lt;/i> values from a properties file into bean definitions,
+ * using the default value if no value is given in the properties file.
+ * &lt;p/>
+ * &lt;p>The default syntax uses an equals sign ('=') to separate the placeholder name from the default value.
+ * This syntax mimicks the syntax which would be used in a property file.
+ * &lt;p/>
+ * &lt;p>Example:
+ * &lt;pre>
+ * &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+ *   &lt;property name="driverClassName" value="${driver=com.mysql.jdbc.Driver}"/&gt;
+ *   &lt;property name="url" value="jdbc:${dbname=mysql:mydb}"/&gt;
+ * &lt;/bean&gt;&lt;/pre>
+ *
+ * &lt;p>Having a default value directly inside the bean definition file, at the place where the property
+ * is set, avoids redundantly listing the placeholder names. It is most useful for properties that usually
+ * keep their default value and are rarely customized outside the bean definition file.
+ *
+ * &lt;p>The lookup order for properties and locations is exactly as described in {@link PropertyPlaceholderConfigurer}.
+ * The default value is only used if none of the specified properties and locations contains a value for
+ * the placeholder.  If no default value is specified, this class behaves exactly the same as its superclass.
+ *
+ * @see PropertyPlaceholderConfigurer
+ * @see #setDefaultSeparator
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>public class DefaultPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static final String DEFAULT_DEFAULT_SEPARATOR = "=";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>defaultSeparator</span> = DEFAULT_DEFAULT_SEPARATOR;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * Set the string that separates a placeholder name from the default value.
+     * The default is "=".
+     *
+     * @param def separator
+     *
+     * @see #DEFAULT_DEFAULT_SEPARATOR
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public final void setDefaultSeparator(final String def) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>        this.defaultSeparator = def;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l54s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param placeholderWithDefault default placeholder
+     * @param props                  properties instance
+     * @param systemPropertiesMode   system properties mode
+     *
+     * @return the resolved placeholder
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected final String resolvePlaceholder(final String placeholderWithDefault, final Properties props,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                              final int systemPropertiesMode) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l65s0 l67s0 l70s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l65s0 l67s0 l68s0 l70s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>        String placeholder = getPlaceholder(placeholderWithDefault);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>        String resolved = super.resolvePlaceholder(placeholder, props, systemPropertiesMode);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l67s0' title='Executions: 0' class='uncovered'>if (resolved == null)</span> <span id='l67s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l68s0'>            resolved = getDefault(placeholderWithDefault);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l70s0'>        return resolved;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * extract the placeholder name from the complete placeholder string (between prefix and separator,
+     * or complete placeholder if no separator is found).
+     *
+     * @param placeholderWithDefault default placeholder
+     *
+     * @return the placeholder
+     *
+     * @see #setPlaceholderPrefix
+     * @see #setDefaultSeparator
+     * @see #setPlaceholderSuffix
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected final String getPlaceholder(final String placeholderWithDefault) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l86s0 l87s0 l88s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l86s0 l87s0 l90s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l86s0'>        int separatorIdx = placeholderWithDefault.indexOf(defaultSeparator);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l87s0' title='Executions: 0' class='uncovered'>if (separatorIdx == -1)</span> <span id='l87s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>            return placeholderWithDefault;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>        return placeholderWithDefault.substring(0, separatorIdx);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * extract the default value from the complete placeholder (the part between separator and suffix).
+     *
+     * @param placeholderWithDefault
+     *
+     * @return the default value, or null if none is given.
+     *
+     * @see #setPlaceholderPrefix
+     * @see #setDefaultSeparator
+     * @see #setPlaceholderSuffix
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected final String getDefault(final String placeholderWithDefault) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l105s0 l106s0 l107s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l105s0 l106s0 l109s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l105s0'>        int separatorIdx = placeholderWithDefault.indexOf(defaultSeparator);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l106s0' title='Executions: 0' class='uncovered'>if (separatorIdx == -1)</span> <span id='l106s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>            return placeholderWithDefault.substring(separatorIdx + 1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

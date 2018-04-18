@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfMgrBean.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\DisconfMgrBean.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.Ordered;
+import org.springframework.core.PriorityOrdered;
+
+import com.baidu.disconf.client.store.aspect.DisconfAspectJ;
+import com.baidu.disconf.client.store.inner.DisconfCenterHostFilesStore;
+import com.baidu.disconf.client.support.utils.StringUtil;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 第一次扫描，静态扫描
+ *
+ * @author liaoqiqi
+ * @version 2014-6-17
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>public class DisconfMgrBean implements BeanDefinitionRegistryPostProcessor, PriorityOrdered, ApplicationContextAware {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public final static String SCAN_SPLIT_TOKEN = ",";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private ApplicationContext <span class='instance uncovered' title='Reads: 0 Writes: 0'>applicationContext</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>scanPackage</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void destroy() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>37</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l37s0'>        DisconfMgr.getInstance().close();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setScanPackage(String scanPackage) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>        this.scanPackage = scanPackage;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public int getOrder() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>        return Ordered.HIGHEST_PRECEDENCE + 1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 这个函数无法达到最高优先级，例如PropertyPlaceholderConfigurer
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l54s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第一次扫描&lt;br/>
+     * 在Spring内部的Bean定义初始化后执行，这样是最高优先级的
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 为了做兼容</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l64s0'>        DisconfCenterHostFilesStore.getInstance().addJustHostFileSet(<span class='instance uncovered' title='Reads: 0 Writes: 0'>fileList</span>);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>        List&lt;String> scanPackList = StringUtil.parseStringToStringList(scanPackage, SCAN_SPLIT_TOKEN);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // unique</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l68s0'>        Set&lt;String> hs = new HashSet&lt;String>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>        hs.addAll(scanPackList);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l70s0'>        scanPackList.clear();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>        scanPackList.addAll(hs);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 进行扫描</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>        DisconfMgr.getInstance().setApplicationContext(applicationContext);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>        DisconfMgr.getInstance().firstScan(scanPackList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // register java bean</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l78s0'>        registerAspect(registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l79s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>        this.applicationContext = applicationContext;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l84s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * register aspectJ for disconf get request
+     *
+     * @param registry
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void registerAspect(BeanDefinitionRegistry registry) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>        GenericBeanDefinition beanDefinition = new GenericBeanDefinition();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>        beanDefinition.setBeanClass(DisconfAspectJ.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l95s0'>        beanDefinition.setLazyInit(false);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>        beanDefinition.setAbstract(false);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>        beanDefinition.setAutowireCandidate(true);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l98s0'>        beanDefinition.setScope("singleton");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>        registry.registerBeanDefinition("disconfAspectJ", beanDefinition);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l101s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /*
+     * 已经废弃了，不推荐使用
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>106</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Deprecated</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>    private Set&lt;String> fileList = new HashSet&lt;String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>109</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Deprecated</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;String> getFileList() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l111s0'>        return fileList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Deprecated</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setFileList(Set&lt;String> fileList) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>        this.fileList = fileList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l117s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

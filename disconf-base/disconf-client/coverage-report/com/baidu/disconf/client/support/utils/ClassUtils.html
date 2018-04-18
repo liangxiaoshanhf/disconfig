@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ClassUtils.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\support\utils\ClassUtils.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.support.utils;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 类工具
+ *
+ * @author liaoqiqi
+ * @version 2014-6-11
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>14</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l14s0'>public class ClassUtils {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 由Get Method名称获取Field名
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String getFieldNameByGetMethodName(String methodName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/7</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l29s0 l35s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l29s0 l31s0 l38s0 l39s0 l49s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l29s0 l31s0 l38s0 l39s0 l40s0 l42s0 l45s0 l49s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l29s0 l31s0 l38s0 l39s0 l40s0 l42s0 l43s0 l49s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l27s0 l38s0 l39s0 l49s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l27s0 l38s0 l39s0 l40s0 l42s0 l45s0 l49s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l23s0 l26s0 l27s0 l38s0 l39s0 l40s0 l42s0 l43s0 l49s0')">G: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>        int prefixIndex = 0;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 必须以get或is开始的</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l26s0' title='Executions: 0' class='uncovered'>if (methodName.startsWith("get")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>            prefixIndex = 3;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>29</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l29s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l29s1' title='Executions: 0' class='uncovered'>if (methodName.startsWith("is")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l31s0'>            prefixIndex = 2;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>        } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>        String fieldName = methodName.substring(prefixIndex);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l39s0' title='Executions: 0' class='uncovered'>if (fieldName.length() >= 1) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>            String firstCharStr = String.valueOf(fieldName.charAt(0))</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>                    .toLowerCase();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l42s0' title='Executions: 0' class='uncovered'>if (fieldName.length() > 1) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>                fieldName = firstCharStr + fieldName.substring(1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>                fieldName = firstCharStr.toLowerCase();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>        return fieldName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 根据Field类型设置值
+     *
+     * @param field
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void setFieldValeByType(Field field, Object obj, String value)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/9</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l78s0 l85s0 l94s0 l96s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l78s0 l85s0 l87s0 l90s0 l96s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l78s0 l85s0 l87s0 l88s0 l90s0 l96s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l78s0 l80s0 l83s0 l96s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l78s0 l80s0 l81s0 l83s0 l96s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l73s0 l76s0 l96s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l71s0 l73s0 l74s0 l76s0 l96s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l66s0 l69s0 l96s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l60s0 l64s0 l66s0 l67s0 l69s0 l96s0')">I: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l60s0'>        Class&lt;?> type = field.getType();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l62s0'>        String typeName = type.getName();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l64s0' title='Executions: 0' class='uncovered'>if (typeName.equals("int")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l66s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>                value = "0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>            field.set(obj, Integer.valueOf(value));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l71s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l71s1' title='Executions: 0' class='uncovered'>if (typeName.equals("long")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l73s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>                value = "0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l76s0'>            field.set(obj, Long.valueOf(value));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l78s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l78s1' title='Executions: 0' class='uncovered'>if (typeName.equals("boolean")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l80s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l81s0'>                value = "false";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>            field.set(obj, Boolean.valueOf(value));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l85s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l85s1' title='Executions: 0' class='uncovered'>if (typeName.equals("double")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l87s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>                value = "0.0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>            field.set(obj, Double.valueOf(value));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>        } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>            field.set(obj, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 根据Field类型返回值
+     *
+     * @param type
+     * @param value
+     *
+     * @return
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static Object getValeByType(Class&lt;?> type, Object value)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 预处理</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l112s0' title='Executions: 0' class='uncovered'>if (!(value instanceof String)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l113s0'>            value = "";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>116</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // trim</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l117s0'>        String dataValue = (String) value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l118s0'>        dataValue = dataValue.trim();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // process</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>        String typeName = type.getName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l122s0'>        typeName = typeName.toLowerCase();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>124</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l124s0' title='Executions: 0' class='uncovered'>if (typeName.equals("int")</span> || <span id='l124s1' title='Executions: 0' class='uncovered'>typeName.equals("java.lang.integer")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l126s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l127s0'>                value = "0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>130</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l130s0'>            return Integer.valueOf(dataValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l132s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l132s1' title='Executions: 0' class='uncovered'>if (typeName.equals("long")</span> || <span id='l132s2' title='Executions: 0' class='uncovered'>typeName.equals("java.lang.long")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l134s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>                value = "0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>138</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l138s0'>            return Long.valueOf(dataValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l140s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l140s1' title='Executions: 0' class='uncovered'>if (typeName.equals("boolean")</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                || <span id='l141s1' title='Executions: 0' class='uncovered'>typeName.equals("java.lang.boolean")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l143s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>                value = "false";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>            return Boolean.valueOf(dataValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>149</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l149s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l149s1' title='Executions: 0' class='uncovered'>if (typeName.equals("double")</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                || <span id='l150s1' title='Executions: 0' class='uncovered'>typeName.equals("java.lang.double")) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l152s0' title='Executions: 0' class='uncovered'>if (value.equals("")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>                value = "0.0";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l156s0'>            return Double.valueOf(dataValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>158</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>160</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l160s0'>            return value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取一个类的所有方法
+     *
+     * @param entityClass
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static Set&lt;Method> getAllMethod(Class&lt;?> entityClass) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>173</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取本类的所有的方法</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l174s0 l184s0 l189s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l174s0 l184s0 l185s0 l189s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>        Set&lt;Method> ms = new HashSet&lt;Method>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l175s0'>        for (Method m : entityClass.getMethods()) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l176s0'>            ms.add(m);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l178s0'>        for (Method m : entityClass.getDeclaredMethods()) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>179</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l179s0'>            ms.add(m);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>182</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 递归获取父类的所有方法</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l183s0'>        Class&lt;?> superClass = entityClass.getSuperclass();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l184s0' title='Executions: 0' class='uncovered'>if (!superClass.equals(Object.class)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l185s0'>            Set&lt;Method> superFields = getAllMethod(superClass);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>            ms.addAll(superFields);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>189</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l189s0'>        return ms;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>192</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

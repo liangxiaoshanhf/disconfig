@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - StringUtil.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\support\utils\StringUtil.java</caption>
+    <tr>
+      <td class='line'>1</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l1s0'>package com.baidu.disconf.client.support.utils;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 有关字符串处理的工具类。
+ * &lt;p>
+ * 这个类中的每个方法都可以“安全”地处理&lt;code>null&lt;/code>，而不会抛出&lt;code>NullPointerException&lt;/code>。
+ * &lt;/p>
+ *
+ * @author liaoqiqi
+ * @version 2014-8-28
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>18</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l18s0'>public abstract class StringUtil {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>20</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l20s0'>    private static final char[] DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>            .toCharArray();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l22s0'>    private static final char[] DIGITS_NOCASE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>            .toCharArray();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param source
+     * @param token
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static List&lt;Integer> parseStringToIntegerList(String source,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                                         String token) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l34s0' title='Executions: 0' class='uncovered'>if (StringUtils.isBlank(source)</span> || <span id='l34s1' title='Executions: 0' class='uncovered'>StringUtils.isEmpty(token)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>        List&lt;Integer> result = new ArrayList&lt;Integer>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l39s0'>        String[] units = source.split(token);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>        for (String unit : units) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>            result.add(Integer.valueOf(unit));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>        return result;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 默认值函数。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 当字符串为empty或blank时，将字符串转换成指定的默认字符串。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 注：判断字符串为null时，可用更通用的ObjectUtil.defaultIfNull。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param source
+     * @param token
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static List&lt;Long> parseStringToLongList(String source, String token) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l62s0' title='Executions: 0' class='uncovered'>if (StringUtils.isBlank(source)</span> || <span id='l62s1' title='Executions: 0' class='uncovered'>StringUtils.isEmpty(token)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>        List&lt;Long> result = new ArrayList&lt;Long>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>        String[] units = source.split(token);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l68s0'>        for (String unit : units) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>            result.add(Long.valueOf(unit));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        return result;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param source
+     * @param token
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static List&lt;String> parseStringToStringList(String source,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                                       String token) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l84s0' title='Executions: 0' class='uncovered'>if (StringUtils.isBlank(source)</span> || <span id='l84s1' title='Executions: 0' class='uncovered'>StringUtils.isEmpty(token)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>        List&lt;String> result = new ArrayList&lt;String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>        String[] units = source.split(token);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>        for (String unit : units) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>            result.add(unit);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>        return result;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // FIXME 待补</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 格式替换。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 如果字符串是&lt;code>null&lt;/code>或空字符串&lt;code>""&lt;/code>，则返回指定默认字符串，否则返回字符串本身。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.defaultIfEmpty(null, "default")  = "default"
+     * StringUtil.defaultIfEmpty("", "default")    = "default"
+     * StringUtil.defaultIfEmpty("  ", "default")  = "  "
+     * StringUtil.defaultIfEmpty("bat", "default") = "bat"
+     * &lt;/pre>
+     *
+     * @param str        要转换的字符串
+     * @param defaultStr 默认字符串
+     *
+     * @return 字符串本身或指定的默认字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String defaultIfEmpty(String str, String defaultStr) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l120s0' title='Executions: 0' class='uncovered'>return str == null</span> || <span id='l120s1' title='Executions: 0' class='uncovered'>str.length() == 0 ? defaultStr</span> : <span id='l120s2' title='Executions: 0' class='uncovered'>str;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 如果字符串是&lt;code>null&lt;/code>或空字符串&lt;code>""&lt;/code>，则返回指定默认字符串，否则返回字符串本身。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.defaultIfBlank(null, "default")  = "default"
+     * StringUtil.defaultIfBlank("", "default")    = "default"
+     * StringUtil.defaultIfBlank("  ", "default")  = "default"
+     * StringUtil.defaultIfBlank("bat", "default") = "bat"
+     * &lt;/pre>
+     *
+     * @param str        要转换的字符串
+     * @param defaultStr 默认字符串
+     *
+     * @return 字符串本身或指定的默认字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String defaultIfBlank(String str, String defaultStr) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l140s0' title='Executions: 0' class='uncovered'>return StringUtils.isBlank(str) ? defaultStr</span> : <span id='l140s1' title='Executions: 0' class='uncovered'>str;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将字符串转换成camel case。
+     * &lt;p>
+     * 如果字符串是&lt;code>null&lt;/code>则返回&lt;code>null&lt;/code>。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.toCamelCase(null)  = null
+     * StringUtil.toCamelCase("")    = ""
+     * StringUtil.toCamelCase("aBc") = "aBc"
+     * StringUtil.toCamelCase("aBc def") = "aBcDef"
+     * StringUtil.toCamelCase("aBc def_ghi") = "aBcDefGhi"
+     * StringUtil.toCamelCase("aBc def_ghi 123") = "aBcDefGhi123"
+     * &lt;/pre>
+     * &lt;p/>
+     * &lt;/p>
+     * &lt;p>
+     * 此方法会保留除了下划线和空白以外的所有分隔符。
+     * &lt;/p>
+     *
+     * @param str 要转换的字符串
+     *
+     * @return camel case字符串，如果原字符串为&lt;code>null&lt;/code>，则返回&lt;code>null&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String toCamelCase(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>        return new WordTokenizer() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l171s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l172s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>174</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l176s0' title='Executions: 0' class='uncovered'>if (!isDelimiter(buffer.charAt(buffer.length() - 1))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>                    buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l178s0'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>179</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l179s0'>                    buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>181</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l181s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l185s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l191s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l195s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>196</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l196s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l201s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>203</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>204</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDelimiter(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l205s0' title='Executions: 0' class='uncovered'>if (ch != UNDERSCORE)</span> <span id='l205s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l206s0'>                    buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l208s0'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l209s0'>        }.parse(str);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将字符串转换成pascal case。
+     * &lt;p>
+     * 如果字符串是&lt;code>null&lt;/code>则返回&lt;code>null&lt;/code>。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.toPascalCase(null)  = null
+     * StringUtil.toPascalCase("")    = ""
+     * StringUtil.toPascalCase("aBc") = "ABc"
+     * StringUtil.toPascalCase("aBc def") = "ABcDef"
+     * StringUtil.toPascalCase("aBc def_ghi") = "ABcDefGhi"
+     * StringUtil.toPascalCase("aBc def_ghi 123") = "aBcDefGhi123"
+     * &lt;/pre>
+     * &lt;p/>
+     * &lt;/p>
+     * &lt;p>
+     * 此方法会保留除了下划线和空白以外的所有分隔符。
+     * &lt;/p>
+     *
+     * @param str 要转换的字符串
+     *
+     * @return pascal case字符串，如果原字符串为&lt;code>null&lt;/code>，则返回&lt;code>null&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String toPascalCase(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l237s0'>        return new WordTokenizer() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>238</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>239</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>240</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l240s0'>                buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l241s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>243</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>244</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>245</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l245s0'>                buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>246</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l246s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>248</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>249</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l250s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>251</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l251s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>253</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>254</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>255</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l255s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>256</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l256s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>258</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l260s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>261</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l261s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>263</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>264</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>265</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l265s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>266</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l266s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>268</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>269</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDelimiter(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>270</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l270s0' title='Executions: 0' class='uncovered'>if (ch != UNDERSCORE)</span> <span id='l270s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>271</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l271s0'>                    buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>272</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>273</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l273s0'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>274</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l274s0'>        }.parse(str);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>275</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将字符串转换成下划线分隔的大写字符串。
+     * &lt;p>
+     * 如果字符串是&lt;code>null&lt;/code>则返回&lt;code>null&lt;/code>。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.toUpperCaseWithUnderscores(null)  = null
+     * StringUtil.toUpperCaseWithUnderscores("")    = ""
+     * StringUtil.toUpperCaseWithUnderscores("aBc") = "A_BC"
+     * StringUtil.toUpperCaseWithUnderscores("aBc def") = "A_BC_DEF"
+     * StringUtil.toUpperCaseWithUnderscores("aBc def_ghi") = "A_BC_DEF_GHI"
+     * StringUtil.toUpperCaseWithUnderscores("aBc def_ghi 123") = "A_BC_DEF_GHI_123"
+     * StringUtil.toUpperCaseWithUnderscores("__a__Bc__") = "__A__BC__"
+     * &lt;/pre>
+     * &lt;p/>
+     * &lt;/p>
+     * &lt;p>
+     * 此方法会保留除了空白以外的所有分隔符。
+     * &lt;/p>
+     *
+     * @param str 要转换的字符串
+     *
+     * @return 下划线分隔的大写字符串，如果原字符串为&lt;code>null&lt;/code>，则返回&lt;code>null&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>302</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String toUpperCaseWithUnderscores(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>303</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l303s0'>        return new WordTokenizer() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>304</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>305</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>306</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l306s0'>                buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>307</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l307s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>309</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>310</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>311</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l311s0' title='Executions: 0' class='uncovered'>if (!isDelimiter(buffer.charAt(buffer.length() - 1))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>312</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l312s0'>                    buffer.append(UNDERSCORE);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>313</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>315</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l315s0'>                buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>316</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l316s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>318</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>319</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>320</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l320s0'>                buffer.append(Character.toUpperCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>321</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l321s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>323</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>324</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>325</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l325s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>326</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l326s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>328</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>329</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>330</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l330s0' title='Executions: 0' class='uncovered'>if (!isDelimiter(buffer.charAt(buffer.length() - 1))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>331</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l331s0'>                    buffer.append(UNDERSCORE);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>332</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>334</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l334s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>335</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l335s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>337</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>338</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>339</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l339s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>340</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l340s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>342</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>343</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDelimiter(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>344</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l344s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>345</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l345s0'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>346</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l346s0'>        }.parse(str);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>347</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>349</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>350</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 将数字或字节转换成ASCII字符串的函数。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>351</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将字符串转换成下划线分隔的小写字符串。
+     * &lt;p>
+     * 如果字符串是&lt;code>null&lt;/code>则返回&lt;code>null&lt;/code>。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     * StringUtil.toLowerCaseWithUnderscores(null)  = null
+     * StringUtil.toLowerCaseWithUnderscores("")    = ""
+     * StringUtil.toLowerCaseWithUnderscores("aBc") = "a_bc"
+     * StringUtil.toLowerCaseWithUnderscores("aBc def") = "a_bc_def"
+     * StringUtil.toLowerCaseWithUnderscores("aBc def_ghi") = "a_bc_def_ghi"
+     * StringUtil.toLowerCaseWithUnderscores("aBc def_ghi 123") = "a_bc_def_ghi_123"
+     * StringUtil.toLowerCaseWithUnderscores("__a__Bc__") = "__a__bc__"
+     * &lt;/pre>
+     * &lt;p/>
+     * &lt;/p>
+     * &lt;p>
+     * 此方法会保留除了空白以外的所有分隔符。
+     * &lt;/p>
+     *
+     * @param str 要转换的字符串
+     *
+     * @return 下划线分隔的小写字符串，如果原字符串为&lt;code>null&lt;/code>，则返回&lt;code>null&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>378</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String toLowerCaseWithUnderscores(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>379</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l379s0'>        return new WordTokenizer() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>380</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>381</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>382</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l382s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>383</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l383s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>385</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>386</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>387</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l387s0' title='Executions: 0' class='uncovered'>if (!isDelimiter(buffer.charAt(buffer.length() - 1))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>388</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l388s0'>                    buffer.append(UNDERSCORE);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>389</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>391</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l391s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>392</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l392s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>394</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>395</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>396</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l396s0'>                buffer.append(Character.toLowerCase(ch));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>397</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l397s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>399</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>400</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitSentence(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>401</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l401s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>402</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l402s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>404</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>405</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void startDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>406</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l406s0' title='Executions: 0' class='uncovered'>if (!isDelimiter(buffer.charAt(buffer.length() - 1))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>407</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l407s0'>                    buffer.append(UNDERSCORE);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>408</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>410</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l410s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>411</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l411s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>413</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>414</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDigitWord(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>415</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l415s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>416</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l416s0'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>418</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>419</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            protected void inDelimiter(StringBuilder buffer, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>420</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l420s0'>                buffer.append(ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>421</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l421s0'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>422</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l422s0'>        }.parse(str);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>423</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将一个长整形转换成62进制的字符串。
+     *
+     * @param longValue 64位数字
+     *
+     * @return 62进制的字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>432</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String longToString(long longValue) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>433</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l433s0'>        return longToString(longValue, false);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>434</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将一个长整形转换成62进制的字符串。
+     *
+     * @param longValue 64位数字
+     * @param noCase    区分大小写
+     *
+     * @return 62进制的字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>444</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String longToString(long longValue, boolean noCase) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>445</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l445s0' title='Executions: 0' class='uncovered'>char[] digits = noCase ? DIGITS_NOCASE</span> : <span id='l445s1' title='Executions: 0' class='uncovered'>DIGITS;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>446</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l446s0'>        int digitsLength = digits.length;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>448</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l448s0' title='Executions: 0' class='uncovered'>if (longValue == 0)</span> <span id='l448s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>449</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l449s0'>            return String.valueOf(digits[0]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>450</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>452</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l452s0' title='Executions: 0' class='uncovered'>if (longValue &lt; 0)</span> <span id='l452s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>453</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l453s0'>            longValue = -longValue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>454</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>456</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l456s0'>        StringBuilder strValue = new StringBuilder();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>458</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l458s0'>        while (longValue != 0) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>459</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l459s0'>            int digit = (int) (longValue % digitsLength);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>460</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l460s0'>            longValue = longValue / digitsLength;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>462</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l462s0'>            strValue.append(digits[digit]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>463</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>465</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l465s0'>        return strValue.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>466</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将一个byte数组转换成62进制的字符串。
+     *
+     * @param bytes 二进制数组
+     *
+     * @return 62进制的字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>475</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String bytesToString(byte[] bytes) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>476</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l476s0'>        return bytesToString(bytes, false);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>477</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将一个byte数组转换成62进制的字符串。
+     *
+     * @param bytes  二进制数组
+     * @param noCase 区分大小写
+     *
+     * @return 62进制的字符串
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>487</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static String bytesToString(byte[] bytes, boolean noCase) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>488</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l488s0' title='Executions: 0' class='uncovered'>char[] digits = noCase ? DIGITS_NOCASE</span> : <span id='l488s1' title='Executions: 0' class='uncovered'>DIGITS;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>489</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l489s0'>        int digitsLength = digits.length;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>491</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l491s0' title='Executions: 0' class='uncovered'>if (ArrayUtils.isEmpty(bytes)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>492</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l492s0'>            return String.valueOf(digits[0]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>493</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>495</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l495s0'>        StringBuilder strValue = new StringBuilder();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>496</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l496s0'>        int value = 0;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>497</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l497s0'>        int limit = Integer.MAX_VALUE >>> 8;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>498</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l498s0'>        int i = 0;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>500</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l500s0'>        do {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>501</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l501s0' title='Executions: 0' class='uncovered'>while (i &lt; bytes.length</span> && <span id='l501s1' title='Executions: 0' class='uncovered'>value &lt; limit)</span> </pre></td>
+    </tr>
+    <tr>
+      <td class='line'>502</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l502s0'>                value = (value &lt;&lt; 8) + (0xFF & bytes[i++]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>503</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>505</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l505s0'>            while (value >= digitsLength) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>506</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l506s0'>                strValue.append(digits[value % digitsLength]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>507</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l507s0'>                value = value / digitsLength;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>508</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>509</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l509s0'>        } while (i &lt; bytes.length);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>511</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l511s0' title='Executions: 0' class='uncovered'>if (value != 0</span> || <span id='l511s1' title='Executions: 0' class='uncovered'>strValue.length() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>512</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l512s0'>            strValue.append(digits[value]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>513</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>515</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l515s0'>        return strValue.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>516</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 判断字符串&lt;code>str&lt;/code>是否以字符&lt;code>ch&lt;/code>结尾
+     *
+     * @param str 要比较的字符串
+     * @param ch  结尾字符
+     *
+     * @return 如果字符串&lt;code>str&lt;/code>是否以字符&lt;code>ch&lt;/code>结尾，则返回&lt;code>true&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>526</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static boolean endsWithChar(String str, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>527</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l527s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(str)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>528</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l528s0'>            return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>529</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>531</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l531s0' title='Executions: 0' class='uncovered'>return str.charAt(str.length() - 1) == ch;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>532</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>534</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>535</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 将字符串转化成集合</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>536</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>538</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // public static &lt;T> List&lt;T> toArrayList(String value) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>539</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // if (value == null) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>540</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>541</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>542</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // // FIXME "[ ...N个空格... ]"暂不考虑</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>543</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // if (StringUtils.isBlank(value) || value.equals("[]")) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>544</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // return Collections.emptyList();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>545</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>546</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>547</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // // ", "</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>548</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // value = StringUtils.substringBetween(value, "[", "]");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>549</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // String[] array = StringUtils.split(value, ", ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>550</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // List&lt;T></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>551</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>552</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>554</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>555</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 字符串比较相关。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>556</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 判断字符串&lt;code>str&lt;/code>是否以字符&lt;code>ch&lt;/code>开头
+     *
+     * @param str 要比较的字符串
+     * @param ch  开头字符
+     *
+     * @return 如果字符串&lt;code>str&lt;/code>是否以字符&lt;code>ch&lt;/code> 开头，则返回&lt;code>true&lt;/code>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>566</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static boolean startsWithChar(String str, char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>567</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l567s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(str)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>568</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l568s0'>            return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>569</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>571</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l571s0' title='Executions: 0' class='uncovered'>return str.charAt(0) == ch;</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>572</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>574</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static int indexOfChars(String string, String chars) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>575</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l575s0'>        return indexOfChars(string, chars, 0);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>576</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>578</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>579</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 字符串索引相关。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>580</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // ==========================================================================</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>582</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static int indexOfChars(String string, String chars, int startindex) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>583</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l583s0' title='Executions: 0' class='uncovered'>if (string == null</span> || <span id='l583s1' title='Executions: 0' class='uncovered'>chars == null)</span> <span id='l583s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>584</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l584s0'>            return -1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>585</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>587</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l587s0'>        int stringLen = string.length();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>588</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l588s0'>        int charsLen = chars.length();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>590</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l590s0' title='Executions: 0' class='uncovered'>if (startindex &lt; 0)</span> <span id='l590s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>591</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l591s0'>            startindex = 0;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>592</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>594</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l594s0'>        for (int i = startindex; i &lt; stringLen; i++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>595</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l595s0'>            char c = string.charAt(i);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>596</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l596s0'>            for (int j = 0; j &lt; charsLen; j++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>597</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l597s0' title='Executions: 0' class='uncovered'>if (c == chars.charAt(j)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>598</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l598s0'>                    return i;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>599</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>600</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>601</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>603</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l603s0'>        return -1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>604</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>606</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static int indexOfChars(String string, char[] chars) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>607</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l607s0'>        return indexOfChars(string, chars, 0);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>608</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>610</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static int indexOfChars(String string, char[] chars, int startindex) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>611</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l611s0' title='Executions: 0' class='uncovered'>if (string == null</span> || <span id='l611s1' title='Executions: 0' class='uncovered'>chars == null)</span> <span id='l611s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>612</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l612s0'>            return -1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>613</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>615</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l615s0'>        int stringLen = string.length();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>616</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l616s0'>        int charsLen = chars.length;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>618</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l618s0'>        for (int i = startindex; i &lt; stringLen; i++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>619</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l619s0'>            char c = string.charAt(i);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>620</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l620s0'>            for (int j = 0; j &lt; charsLen; j++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>621</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l621s0' title='Executions: 0' class='uncovered'>if (c == chars[j])</span> <span id='l621s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>622</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l622s0'>                    return i;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>623</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>624</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>625</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>627</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l627s0'>        return -1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>628</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 解析出下列语法所构成的&lt;code>SENTENCE&lt;/code>。
+     * &lt;p/>
+     * &lt;p/>
+     * &lt;pre>
+     *  SENTENCE = WORD (DELIMITER* WORD)*
+     *
+     *  WORD = UPPER_CASE_WORD | LOWER_CASE_WORD | TITLE_CASE_WORD | DIGIT_WORD
+     *
+     *  UPPER_CASE_WORD = UPPER_CASE_LETTER+
+     *  LOWER_CASE_WORD = LOWER_CASE_LETTER+
+     *  TITLE_CASE_WORD = UPPER_CASE_LETTER LOWER_CASE_LETTER+
+     *  DIGIT_WORD      = DIGIT+
+     *
+     *  UPPER_CASE_LETTER = Character.isUpperCase()
+     *  LOWER_CASE_LETTER = Character.isLowerCase()
+     *  DIGIT             = Character.isDigit()
+     *  NON_LETTER_DIGIT  = !Character.isUpperCase() && !Character.isLowerCase() && !Character.isDigit()
+     *
+     *  DELIMITER = WHITESPACE | NON_LETTER_DIGIT
+     * &lt;/pre>
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>652</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l652s0'>    private abstract static class WordTokenizer {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>653</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected static final char UNDERSCORE = '_';</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * Parse sentence。
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>658</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String parse(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l659s0 l660s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l659s0 l663s0 l666s1 l721s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>659</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l659s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(str)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>660</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l660s0'>                return str;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>661</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>663</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l663s0'>            int length = str.length();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>664</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l664s0'>            StringBuilder buffer = new StringBuilder(length);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>666</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l666s0'>            for (int index = 0; index &lt; length; index++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>667</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l667s0'>                char ch = str.charAt(index);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>669</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 忽略空白。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>670</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l670s0' title='Executions: 0' class='uncovered'>if (Character.isWhitespace(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>671</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l671s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>672</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>674</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 大写字母开始：UpperCaseWord或是TitleCaseWord。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>675</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l675s0' title='Executions: 0' class='uncovered'>if (Character.isUpperCase(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>676</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l676s0'>                    int wordIndex = index + 1;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>678</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l678s0'>                    while (wordIndex &lt; length) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>679</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l679s0'>                        char wordChar = str.charAt(wordIndex);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>681</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                        <span id='l681s0' title='Executions: 0' class='uncovered'>if (Character.isUpperCase(wordChar)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>682</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l682s0'>                            wordIndex++;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>683</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                        <span id='l683s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l683s1' title='Executions: 0' class='uncovered'>if (Character.isLowerCase(wordChar)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>684</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l684s0'>                            wordIndex--;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>685</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l685s0'>                            break;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>686</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>687</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                            break;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>688</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>689</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>691</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 1. wordIndex == length，说明最后一个字母为大写，以upperCaseWord处理之。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>692</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 2. wordIndex == index，说明index处为一个titleCaseWord。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>693</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 3. wordIndex > index，说明index到wordIndex -</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>694</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 1处全部是大写，以upperCaseWord处理。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>695</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l695s0' title='Executions: 0' class='uncovered'>if (wordIndex == length</span> || <span id='l695s1' title='Executions: 0' class='uncovered'>wordIndex > index)</span> <span id='l695s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>696</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l696s0'>                        index = parseUpperCaseWord(buffer, str, index,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>697</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l697s0'>                                wordIndex);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>698</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l698s0'>                    } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>699</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l699s0'>                        index = parseTitleCaseWord(buffer, str, index);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>700</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>702</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l702s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>703</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>705</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 小写字母开始：LowerCaseWord。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>706</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l706s0' title='Executions: 0' class='uncovered'>if (Character.isLowerCase(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>707</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l707s0'>                    index = parseLowerCaseWord(buffer, str, index);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>708</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l708s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>709</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>711</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 数字开始：DigitWord。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>712</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l712s0' title='Executions: 0' class='uncovered'>if (Character.isDigit(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>713</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l713s0'>                    index = parseDigitWord(buffer, str, index);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>714</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l714s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>715</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>717</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 非字母数字开始：Delimiter。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>718</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l718s0'>                inDelimiter(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>719</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>721</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l721s0'>            return buffer.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>722</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>724</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private int parseUpperCaseWord(StringBuilder buffer, String str,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>725</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                       int index, int length) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l726s0 l729s0 l732s0 l736s0 l741s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l726s0 l729s0 l730s0 l736s0 l741s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>726</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l726s0'>            char ch = str.charAt(index++);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>728</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 首字母，必然存在且为大写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>729</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l729s0' title='Executions: 0' class='uncovered'>if (buffer.length() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>730</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l730s0'>                startSentence(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>731</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l731s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>732</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l732s0'>                startWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>733</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>735</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 后续字母，必为小写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>736</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l736s0'>            for (; index &lt; length; index++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>737</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l737s0'>                ch = str.charAt(index);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>738</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l738s0'>                inWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>739</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>741</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l741s0'>            return index - 1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>742</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>744</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private int parseLowerCaseWord(StringBuilder buffer, String str,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>745</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                       int index) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l746s0 l749s0 l752s0 l756s0 l758s0 l768s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l746s0 l749s0 l750s0 l756s0 l758s0 l768s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>746</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l746s0'>            char ch = str.charAt(index++);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>748</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 首字母，必然存在且为小写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>749</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l749s0' title='Executions: 0' class='uncovered'>if (buffer.length() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>750</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l750s0'>                startSentence(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>751</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l751s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>752</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l752s0'>                startWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>753</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>755</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 后续字母，必为小写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>756</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l756s0'>            int length = str.length();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>758</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l758s0'>            for (; index &lt; length; index++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>759</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l759s0'>                ch = str.charAt(index);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>761</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l761s0' title='Executions: 0' class='uncovered'>if (Character.isLowerCase(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>762</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l762s0'>                    inWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>763</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>764</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    break;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>765</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>766</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>768</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l768s0'>            return index - 1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>769</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>771</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private int parseTitleCaseWord(StringBuilder buffer, String str,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>772</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                       int index) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l773s0 l776s0 l779s0 l783s0 l785s0 l795s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l773s0 l776s0 l777s0 l783s0 l785s0 l795s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>773</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l773s0'>            char ch = str.charAt(index++);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>775</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 首字母，必然存在且为大写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>776</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l776s0' title='Executions: 0' class='uncovered'>if (buffer.length() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>777</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l777s0'>                startSentence(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>778</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l778s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>779</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l779s0'>                startWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>780</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>782</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 后续字母，必为小写。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>783</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l783s0'>            int length = str.length();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>785</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l785s0'>            for (; index &lt; length; index++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>786</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l786s0'>                ch = str.charAt(index);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>788</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l788s0' title='Executions: 0' class='uncovered'>if (Character.isLowerCase(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>789</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l789s0'>                    inWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>790</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>791</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    break;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>792</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>793</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>795</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l795s0'>            return index - 1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>796</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>798</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private int parseDigitWord(StringBuilder buffer, String str, int index) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l799s0 l802s0 l805s0 l809s0 l811s0 l821s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l799s0 l802s0 l803s0 l809s0 l811s0 l821s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>799</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l799s0'>            char ch = str.charAt(index++);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>801</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 首字符，必然存在且为数字。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>802</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l802s0' title='Executions: 0' class='uncovered'>if (buffer.length() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>803</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l803s0'>                startDigitSentence(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>804</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l804s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>805</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l805s0'>                startDigitWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>806</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>808</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 后续字符，必为数字。</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>809</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l809s0'>            int length = str.length();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>811</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l811s0'>            for (; index &lt; length; index++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>812</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l812s0'>                ch = str.charAt(index);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>814</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l814s0' title='Executions: 0' class='uncovered'>if (Character.isDigit(ch)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>815</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l815s0'>                    inDigitWord(buffer, ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>816</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>817</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    break;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>818</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>819</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>821</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l821s0'>            return index - 1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>822</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>824</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected boolean isDelimiter(char ch) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l825s0 l825s1 l826s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l825s0 l825s1')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l825s0 l825s1')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l825s0 l825s1 l826s0 l825s1')">D: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>825</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l825s0' title='Executions: 0' class='uncovered'>return !Character.isUpperCase(ch)</span> && <span id='l825s1' title='Executions: 0' class='uncovered'>!Character.isLowerCase(ch)</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>826</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    && <span id='l826s1' title='Executions: 0' class='uncovered'>!Character.isDigit(ch);</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>827</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>829</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void startSentence(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>831</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void startWord(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>833</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void inWord(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>835</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void startDigitSentence(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>837</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void startDigitWord(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>839</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void inDigitWord(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>841</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected abstract void inDelimiter(StringBuilder buffer, char ch);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>842</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>844</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

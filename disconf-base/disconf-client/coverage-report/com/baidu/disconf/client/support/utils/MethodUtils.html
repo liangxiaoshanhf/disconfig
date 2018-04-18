@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - MethodUtils.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\support\utils\MethodUtils.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.support.utils;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.annotations.DisconfFileItem;
+import com.baidu.disconf.client.common.annotations.DisconfItem;
+import com.baidu.disconf.core.common.constants.DisConfigTypeEnum;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * @author liaoqiqi
+ * @version 2014-9-9
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>19</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l19s0'>public class MethodUtils {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(MethodUtils.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 对于一个 get/is 方法，返回其相对应的Field
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static Field getFieldFromMethod(Method method, Field[] expectedFields, DisConfigTypeEnum disConfigTypeEnum) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        String fieldName;</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l30s0 l38s0 l46s0 l52s0 l52s1 l61s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l30s0 l38s0 l46s0 l48s0 l52s0 l52s1 l61s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l30s0 l32s0 l46s0 l52s0 l52s1 l61s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l30s0 l32s0 l46s0 l48s0 l52s0 l52s1 l61s0')">D: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l30s0' title='Executions: 0' class='uncovered'>if (disConfigTypeEnum.equals(DisConfigTypeEnum.FILE)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l32s0'>            DisconfFileItem disconfFileItem = method.getAnnotation(DisconfFileItem.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 根据用户设定的注解来获取</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>            fieldName = disconfFileItem.associateField();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>        } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>            DisconfItem disItem = method.getAnnotation(DisconfItem.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 根据用户设定的注解来获取</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>            fieldName = disItem.associateField();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 如果用户未设定注解，则猜其名字</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l46s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(fieldName)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 从方法名 获取其 Field 名</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>            fieldName = ClassUtils.getFieldNameByGetMethodName(method.getName());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 确认此Field名是正确的</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>        for (Field field : expectedFields) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l54s0' title='Executions: 0' class='uncovered'>if (field.getName().equals(fieldName)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l55s0'>                return field;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        LOGGER.error(method.toString() + " cannot get its related field name. ");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>        return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static Method getSetterMethodFromField(Class&lt;?> curClass, Field field) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l69s0 l73s0 l74s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l69s0 l73s0 l78s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>        String fieldName = field.getName().toLowerCase();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>        Set&lt;Method> methods = ClassUtils.getAllMethod(curClass);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        for (Method method : methods) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l73s0' title='Executions: 0' class='uncovered'>if (method.getName().toLowerCase().equals("set" + fieldName)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>                return method;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l78s0'>        return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

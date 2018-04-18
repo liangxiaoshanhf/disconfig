@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ScanDynamicStoreAdapter.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\scan\inner\dynamic\ScanDynamicStoreAdapter.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.scan.inner.dynamic;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.annotations.DisconfFile;
+import com.baidu.disconf.client.common.annotations.DisconfUpdateService;
+import com.baidu.disconf.client.common.model.DisconfKey;
+import com.baidu.disconf.client.common.update.IDisconfUpdate;
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.scan.inner.common.ScanVerify;
+import com.baidu.disconf.client.scan.inner.dynamic.model.ScanDynamicModel;
+import com.baidu.disconf.client.scan.inner.statically.model.ScanStaticModel;
+import com.baidu.disconf.client.store.DisconfStorePipelineProcessor;
+import com.baidu.disconf.client.store.DisconfStoreProcessor;
+import com.baidu.disconf.client.store.DisconfStoreProcessorFactory;
+import com.baidu.disconf.client.support.registry.Registry;
+import com.baidu.disconf.core.common.constants.DisConfigTypeEnum;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 动态扫描 与 Store模块的转换器
+ *
+ * @author liaoqiqi
+ * @version 2014-6-18
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>public class ScanDynamicStoreAdapter {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(ScanDynamicStoreAdapter.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 扫描更新回调函数
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void scanUpdateCallbacks(ScanStaticModel scanModel, Registry registry) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 扫描出来</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>        ScanDynamicModel scanDynamicModel = analysis4DisconfUpdate(scanModel, registry);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>46</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 写到仓库中</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>        transformUpdateService(scanDynamicModel.getDisconfUpdateServiceInverseIndexMap());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>        transformPipelineService(scanDynamicModel.getDisconfUpdatePipeline());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第二次扫描, 获取更新 回调的实例&lt;br/>
+     * &lt;p/>
+     * 分析出更新操作的相关配置文件内容
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static ScanDynamicModel analysis4DisconfUpdate(ScanStaticModel scanModel, Registry registry) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 配置项或文件</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/9</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l83s0 l98s0 l106s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l83s0 l98s0 l99s0 l101s0 l106s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l83s0 l98s0 l99s0 l101s0 l102s0 l106s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l78s0 l98s0 l106s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l78s0 l98s0 l99s0 l101s0 l106s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l76s0 l77s0 l78s0 l98s0 l99s0 l101s0 l102s0 l106s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l71s0 l98s0 l106s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l71s0 l98s0 l99s0 l101s0 l106s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l59s0 l70s0 l71s0 l98s0 l99s0 l101s0 l102s0 l106s0')">I: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        Map&lt;DisconfKey, List&lt;IDisconfUpdate>> inverseMap = new HashMap&lt;DisconfKey, List&lt;IDisconfUpdate>>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>        Set&lt;Class&lt;?>> disconfUpdateServiceSet = scanModel.getDisconfUpdateService();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l62s0'>        for (Class&lt;?> disconfUpdateServiceClass : disconfUpdateServiceSet) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 回调对应的参数</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>            DisconfUpdateService disconfUpdateService =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>                    disconfUpdateServiceClass.getAnnotation(DisconfUpdateService.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 校验是否有继承正确,是否继承IDisconfUpdate</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l70s0' title='Executions: 0' class='uncovered'>if (!ScanVerify.hasIDisconfUpdate(disconfUpdateServiceClass)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>                continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>74</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取回调接口实例</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l76s0'>            IDisconfUpdate iDisconfUpdate = getIDisconfUpdateInstance(disconfUpdateServiceClass, registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l77s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdate == null)</span> <span id='l77s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l78s0'>                continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 配置项</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>            processItems(inverseMap, disconfUpdateService, iDisconfUpdate);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>85</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 配置文件</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>            processFiles(inverseMap, disconfUpdateService, iDisconfUpdate);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // set data</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>        ScanDynamicModel scanDynamicModel = new ScanDynamicModel();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>        scanDynamicModel.setDisconfUpdateServiceInverseIndexMap(inverseMap);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // set update pipeline</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l98s0' title='Executions: 0' class='uncovered'>if (scanModel.getiDisconfUpdatePipeline() != null) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l99s0'>            IDisconfUpdatePipeline iDisconfUpdatePipeline = getIDisconfUpdatePipelineInstance(scanModel</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>                    .getiDisconfUpdatePipeline(), registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l101s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdatePipeline != null)</span> <span id='l101s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l102s0'>                scanDynamicModel.setDisconfUpdatePipeline(iDisconfUpdatePipeline);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l106s0'>        return scanDynamicModel;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取回调对应配置项列表
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void processItems(Map&lt;DisconfKey, List&lt;IDisconfUpdate>> inverseMap,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                     DisconfUpdateService disconfUpdateService, IDisconfUpdate iDisconfUpdate) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l115s0'>        List&lt;String> itemKeys = Arrays.asList(disconfUpdateService.itemKeys());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 反索引</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l118s0'>        for (String key : itemKeys) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l120s0'>            DisconfKey disconfKey = new DisconfKey(DisConfigTypeEnum.ITEM, key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>            addOne2InverseMap(disconfKey, inverseMap, iDisconfUpdate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l123s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取回调对应的配置文件列表
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void processFiles(Map&lt;DisconfKey, List&lt;IDisconfUpdate>> inverseMap,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                     DisconfUpdateService disconfUpdateService, IDisconfUpdate iDisconfUpdate) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>131</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 反索引</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l132s0 l137s0 l144s0 l150s0 l156s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l132s0 l137s0 l139s0 l150s0 l156s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l132s0'>        List&lt;Class&lt;?>> classes = Arrays.asList(disconfUpdateService.classes());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l133s0'>        for (Class&lt;?> curClass : classes) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>135</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取其注解</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l136s0'>            DisconfFile disconfFile = curClass.getAnnotation(DisconfFile.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l137s0' title='Executions: 0' class='uncovered'>if (disconfFile == null)</span> <span id='l137s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l139s0'>                LOGGER.error("cannot find DisconfFile annotation for class when set callback: {} ",</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l140s0'>                        curClass.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l141s0'>                continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>            DisconfKey disconfKey = new DisconfKey(DisConfigTypeEnum.FILE, disconfFile.filename());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l145s0'>            addOne2InverseMap(disconfKey, inverseMap, iDisconfUpdate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 反索引</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l149s0'>        List&lt;String> fileKeyList = Arrays.asList(disconfUpdateService.confFileKeys());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>        for (String fileKey : fileKeyList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l152s0'>            DisconfKey disconfKey = new DisconfKey(DisConfigTypeEnum.FILE, fileKey);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>            addOne2InverseMap(disconfKey, inverseMap, iDisconfUpdate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l156s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取回调接口的实现
+     * &lt;p/>
+     * // 回调函数需要实例化出来,这里
+     * // 非Spring直接New
+     * // Spring要GetBean
+     * //
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static IDisconfUpdate getIDisconfUpdateInstance(Class&lt;?> disconfUpdateServiceClass, Registry registry) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l168s0 l169s0 l170s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l168s0 l169s0 l172s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>        Object iDisconfUpdate = registry.getFirstByType(disconfUpdateServiceClass, true);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l169s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdate == null)</span> <span id='l169s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l170s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l172s0'>        return (IDisconfUpdate) iDisconfUpdate;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>174</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取回调接口的实现
+     * //
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static IDisconfUpdatePipeline getIDisconfUpdatePipelineInstance(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>181</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            Class&lt;IDisconfUpdatePipeline> disconfUpdateServiceClass,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>182</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            Registry registry) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l184s0 l185s0 l186s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l184s0 l185s0 l188s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l184s0'>        Object iDisconfUpdate = registry.getFirstByType(disconfUpdateServiceClass, true);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l185s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdate == null)</span> <span id='l185s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>188</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l188s0'>        return (IDisconfUpdatePipeline) iDisconfUpdate;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>190</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 将一个配置回调item写到map里
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void addOne2InverseMap(DisconfKey disconfKey, Map&lt;DisconfKey, List&lt;IDisconfUpdate>> inverseMap,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>196</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                          IDisconfUpdate iDisconfUpdate) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 忽略的key 应该忽略掉</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l199s0 l200s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l199s0 l205s0 l208s0 l212s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l199s0 l205s0 l206s0 l212s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l199s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().getIgnoreDisconfKeySet().contains(disconfKey.getKey())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>203</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        List&lt;IDisconfUpdate> serviceList;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l205s0' title='Executions: 0' class='uncovered'>if (inverseMap.containsKey(disconfKey)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l206s0'>            inverseMap.get(disconfKey).add(iDisconfUpdate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l207s0'>        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l208s0'>            serviceList = new ArrayList&lt;IDisconfUpdate>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l209s0'>            serviceList.add(iDisconfUpdate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l210s0'>            inverseMap.put(disconfKey, serviceList);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>211</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l212s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第二次扫描&lt;br/>
+     * 转换 pipeline 回调函数，将其写到 仓库中
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void transformPipelineService(IDisconfUpdatePipeline iDisconfUpdatePipeline) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>220</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l220s0'>        DisconfStorePipelineProcessor disconfStorePipelineProcessor = DisconfStoreProcessorFactory</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l221s0'>                .getDisconfStorePipelineProcessor();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l222s0'>        disconfStorePipelineProcessor.setDisconfUpdatePipeline(iDisconfUpdatePipeline);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第二次扫描&lt;br/>
+     * 转换 更新 回调函数，将其写到 仓库中
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void transformUpdateService(Map&lt;DisconfKey,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>230</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            List&lt;IDisconfUpdate>> disconfUpdateServiceInverseIndexMap) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/5</span>
+        <span class='uncovered' onclick="showPath(this,'l232s0 l242s0 l244s0 l245s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l232s0 l242s0 l252s0 l254s0 l255s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l232s0 l242s0 l252s0 l273s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l232s0 l242s0 l252s0 l254s0 l258s0 l273s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l232s0 l242s0 l244s0 l248s0 l273s0')">E: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>232</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l232s0'>        DisconfStoreProcessor disconfStoreProcessorFile = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>233</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l233s0'>        DisconfStoreProcessor disconfStoreProcessorItem = DisconfStoreProcessorFactory.getDisconfStoreItemProcessor();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>235</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l235s0'>        for (DisconfKey disconfKey : disconfUpdateServiceInverseIndexMap.keySet()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>237</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>238</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>239</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>241</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l242s0' title='Executions: 0' class='uncovered'>if (disconfKey.getDisConfigTypeEnum().equals(DisConfigTypeEnum.FILE)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>244</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l244s0' title='Executions: 0' class='uncovered'>if (!disconfStoreProcessorFile.hasThisConf(disconfKey.getKey())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>245</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l245s0'>                        throw new Exception();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>246</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>248</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l248s0'>                    disconfStoreProcessorFile.addUpdateCallbackList(disconfKey.getKey(),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>249</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l249s0'>                            disconfUpdateServiceInverseIndexMap</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l250s0'>                                    .get(disconfKey));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>252</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l252s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l252s1' title='Executions: 0' class='uncovered'>if (disconfKey.getDisConfigTypeEnum().equals(DisConfigTypeEnum.ITEM)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>254</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l254s0' title='Executions: 0' class='uncovered'>if (!disconfStoreProcessorItem.hasThisConf(disconfKey.getKey())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>255</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l255s0'>                        throw new Exception();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>256</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>258</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l258s0'>                    disconfStoreProcessorItem.addUpdateCallbackList(disconfKey.getKey(),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l259s0'>                            disconfUpdateServiceInverseIndexMap</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l260s0'>                                    .get(disconfKey));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>261</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>263</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l263s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>264</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 找不到回调对应的配置，这是用户配置 错误了</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>265</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l265s0'>                StringBuffer sb = new StringBuffer();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>266</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l266s0'>                sb.append("cannot find " + disconfKey + "for: ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l267s0'>                for (IDisconfUpdate serClass : disconfUpdateServiceInverseIndexMap.get(disconfKey)) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>268</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l268s0'>                    sb.append(serClass.toString() + "\t");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>269</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>270</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l270s0'>                LOGGER.error(sb.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>271</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>272</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>273</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l273s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>275</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfCoreMgrImpl.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\core\impl\DisconfCoreMgrImpl.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.core.impl;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.core.DisconfCoreMgr;
+import com.baidu.disconf.client.core.processor.DisconfCoreProcessor;
+import com.baidu.disconf.client.core.processor.DisconfCoreProcessorFactory;
+import com.baidu.disconf.client.fetcher.FetcherMgr;
+import com.baidu.disconf.client.support.registry.Registry;
+import com.baidu.disconf.client.watch.WatchMgr;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 核心处理器
+ *
+ * @author liaoqiqi
+ * @version 2014-6-10
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class DisconfCoreMgrImpl implements DisconfCoreMgr {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfCoreMgrImpl.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l26s0'>    private List&lt;DisconfCoreProcessor> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfCoreProcessorList</span> = new ArrayList&lt;DisconfCoreProcessor>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 监控器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l29s0'>    private WatchMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>watchMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 抓取器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l32s0'>    private FetcherMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>fetcherMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // registry</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>    private Registry <span class='instance uncovered' title='Reads: 0 Writes: 0'>registry</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>37</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l37s0'>    public DisconfCoreMgrImpl(WatchMgr watchMgr, FetcherMgr fetcherMgr, Registry registry) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l39s0'>        this.watchMgr = watchMgr;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>        this.fetcherMgr = fetcherMgr;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>        this.registry = registry;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 在这里添加好配置项、配置文件的处理器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>        DisconfCoreProcessor disconfCoreProcessorFile =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>                DisconfCoreProcessorFactory.getDisconfCoreProcessorFile(watchMgr, fetcherMgr, registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>        disconfCoreProcessorList.add(disconfCoreProcessorFile);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>50</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l50s0'>        DisconfCoreProcessor disconfCoreProcessorItem =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>                DisconfCoreProcessorFactory.getDisconfCoreProcessorItem(watchMgr, fetcherMgr, registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>        disconfCoreProcessorList.add(disconfCoreProcessorItem);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 1. 获取远程的所有配置数据&lt;br/>
+     * 2. 注入到仓库中&lt;br/>
+     * 3. Watch 配置 &lt;br/>
+     * &lt;p/>
+     * 更新 所有配置数据
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void process() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 处理</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>        for (DisconfCoreProcessor disconfCoreProcessor : disconfCoreProcessorList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>            disconfCoreProcessor.processAllItems();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 只处理某一个
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void processFile(String fileName) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l79s0'>        DisconfCoreProcessor disconfCoreProcessorFile =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>                DisconfCoreProcessorFactory.getDisconfCoreProcessorFile(watchMgr, fetcherMgr, registry);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l82s0'>        disconfCoreProcessorFile.processOneItem(fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 特殊的，将仓库里的数据注入到 配置项、配置文件 的实体中
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void inject2DisconfInstance() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>90</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 处理</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>        for (DisconfCoreProcessor disconfCoreProcessor : disconfCoreProcessorList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>95</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l95s0'>            disconfCoreProcessor.inject2Conf();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void release() {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l102s0 l106s0 l109s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l102s0 l106s0 l107s0 l109s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l102s0 l103s0 l106s0 l109s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l102s0 l103s0 l106s0 l107s0 l109s0')">D: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l102s0' title='Executions: 0' class='uncovered'>if (fetcherMgr != null)</span> <span id='l102s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l103s0'>            fetcherMgr.release();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l106s0' title='Executions: 0' class='uncovered'>if (watchMgr != null)</span> <span id='l106s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>            watchMgr.release();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

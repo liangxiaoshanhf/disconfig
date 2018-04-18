@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ReloadingPropertyPlaceholderConfigurer.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\addons\properties\ReloadingPropertyPlaceholderConfigurer.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.addons.properties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.PropertyValue;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinitionVisitor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringValueResolver;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 具有 reloadable 的 property bean
+ * 扩展了 DefaultPropertyPlaceholderConfigurer
+ * 特性如下：
+ * 1. 启动时 监控 动态config，并维护它们与相应bean的关系
+ * 2. 当动态config变动时，此configurer会进行reload
+ * 3. reload 时会 compare config value, and set value for beans
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>public class ReloadingPropertyPlaceholderConfigurer extends DefaultPropertyPlaceholderConfigurer implements</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        InitializingBean, DisposableBean, IReloadablePropertiesListener, ApplicationContextAware {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>    protected static final Logger logger = LoggerFactory.getLogger(ReloadingPropertyPlaceholderConfigurer.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 默认的 property 标识符</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>    private String placeholderPrefix = DEFAULT_PLACEHOLDER_PREFIX;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>    private String placeholderSuffix = DEFAULT_PLACEHOLDER_SUFFIX;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String beanName;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private BeanFactory beanFactory;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Properties[] propertiesArray;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 对于被标记为动态的，进行 构造 property dependency
+     * 非动态的，则由原来的spring进行处理
+     *
+     * @param strVal
+     * @param props
+     * @param visitedPlaceholders
+     *
+     * @return
+     *
+     * @throws BeanDefinitionStoreException
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected String parseStringValue(String strVal, Properties props, Set visitedPlaceholders)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            throws BeanDefinitionStoreException {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l70s0'>        DynamicProperty dynamic = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>72</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // replace reloading prefix and suffix by "normal" prefix and suffix.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // remember all the "dynamic" placeholders encountered.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>        StringBuffer buf = new StringBuffer(strVal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>        int startIndex = strVal.indexOf(this.placeholderPrefix);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l76s0'>        while (startIndex != -1) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>            int endIndex = buf.toString().indexOf(this.placeholderSuffix, startIndex + this.placeholderPrefix.length());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l78s0' title='Executions: 0' class='uncovered'>if (endIndex != -1)</span> <span id='l78s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l79s0' title='Executions: 0' class='uncovered'>if (currentBeanName != null</span> && <span id='l79s1' title='Executions: 0' class='uncovered'>currentPropertyName != null)</span> <span id='l79s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>                    String placeholder = buf.substring(startIndex + this.placeholderPrefix.length(), endIndex);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l81s0'>                    placeholder = getPlaceholder(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l82s0' title='Executions: 0' class='uncovered'>if (dynamic == null)</span> <span id='l82s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>                        dynamic = getDynamic(currentBeanName, currentPropertyName, strVal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>                    addDependency(dynamic, placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l86s0'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>                    logger.debug("dynamic property outside bean property value - ignored: " + strVal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l89s0'>                startIndex = endIndex - this.placeholderPrefix.length() + this.placeholderPrefix.length() +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>                        this.placeholderSuffix.length();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>                startIndex = strVal.indexOf(this.placeholderPrefix, startIndex);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>                startIndex = -1;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // then, business as usual. no recursive reloading placeholders please.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>        return super.parseStringValue(buf.toString(), props, visitedPlaceholders);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param currentBeanName     当前的bean name
+     * @param currentPropertyName 当前它的属性
+     * @param orgStrVal           原来的值
+     *
+     * @return
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private DynamicProperty getDynamic(String currentBeanName, String currentPropertyName, String orgStrVal) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l108s0'>        DynamicProperty dynamic = new DynamicProperty(currentBeanName, currentPropertyName, orgStrVal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>        DynamicProperty found = dynamicProperties.get(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l110s0' title='Executions: 0' class='uncovered'>if (found != null)</span> <span id='l110s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l111s0'>            return found;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l113s0'>        dynamicProperties.put(dynamic, dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l114s0'>        return dynamic;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Properties lastMergedProperties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * merge property and record last merge
+     *
+     * @return
+     *
+     * @throws IOException
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected Properties mergeProperties() throws IOException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l127s0'>        Properties properties = super.mergeProperties();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>        this.lastMergedProperties = properties;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>        return properties;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 当配置更新时，被调用
+     *
+     * @param event
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void propertiesReloaded(PropertiesReloadedEvent event) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l139s0'>        Properties oldProperties = lastMergedProperties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l143s0'>            Properties newProperties = mergeProperties();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取哪些 dynamic property 被影响</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l148s0'>            Set&lt;String> placeholders = placeholderToDynamics.keySet();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l149s0'>            Set&lt;DynamicProperty> allDynamics = new HashSet&lt;DynamicProperty>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>            for (String placeholder : placeholders) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l151s0'>                String newValue = newProperties.getProperty(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l152s0'>                String oldValue = oldProperties.getProperty(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l153s0' title='Executions: 0' class='uncovered'>if (newValue != null</span> && <span id='l153s1' title='Executions: 0' class='uncovered'>!newValue.equals(oldValue)</span> || <span id='l153s2' title='Executions: 0' class='uncovered'>newValue == null</span> && <span id='l153s3' title='Executions: 0' class='uncovered'>oldValue != null)</span> <span id='l153s4' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l154s0' title='Executions: 0' class='uncovered'>if (logger.isInfoEnabled()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l155s0'>                        logger.info("Property changed detected: " + placeholder +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                                (<span id='l156s0' title='Executions: 0' class='uncovered'>newValue != null ? "=" + newValue</span> : <span id='l156s1' title='Executions: 0' class='uncovered'>" removed"));</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>157</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l158s0'>                    List&lt;DynamicProperty> affectedDynamics = placeholderToDynamics.get(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l159s0'>                    allDynamics.addAll(affectedDynamics);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>160</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>163</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>164</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取受影响的beans</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>165</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l166s0'>            Map&lt;String, List&lt;DynamicProperty>> dynamicsByBeanName = new HashMap&lt;String, List&lt;DynamicProperty>>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l167s0'>            Map&lt;String, Object> beanByBeanName = new HashMap&lt;String, Object>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>            for (DynamicProperty dynamic : allDynamics) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l169s0'>                String beanName = dynamic.getBeanName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l170s0'>                List&lt;DynamicProperty> l = dynamicsByBeanName.get(beanName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>172</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l172s0' title='Executions: 0' class='uncovered'>if (l == null)</span> <span id='l172s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>173</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l173s0'>                    dynamicsByBeanName.put(beanName, (l = new ArrayList&lt;DynamicProperty>()));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>                    Object bean = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l176s0'>                        bean = applicationContext.getBean(beanName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>                        beanByBeanName.put(beanName, bean);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l178s0'>                    } catch (BeansException e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>179</td><td>&nbsp;</td>
+      <td><pre class='comment'>                        // keep dynamicsByBeanName list, warn only once.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l180s0'>                        logger.error("Error obtaining bean " + beanName, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>181</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // say hello</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                        <span id='l187s0' title='Executions: 0' class='uncovered'>if (bean instanceof IReconfigurationAware)</span> <span id='l187s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>188</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l188s0'>                            ((IReconfigurationAware) bean).beforeReconfiguration();  // hello!</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>                    } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l191s0'>                        logger.error("Error calling beforeReconfiguration on " + beanName, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>192</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l194s0'>                l.add(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>197</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 处理受影响的bean</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>            Collection&lt;String> beanNames = dynamicsByBeanName.keySet();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l201s0'>            for (String beanName : beanNames) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>                Object bean = beanByBeanName.get(beanName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l203s0' title='Executions: 0' class='uncovered'>if (bean == null) // problems obtaining bean, earlier</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>204</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l205s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l207s0'>                BeanWrapper beanWrapper = new BeanWrapperImpl(bean);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // for all affected ...</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l210s0'>                List&lt;DynamicProperty> dynamics = dynamicsByBeanName.get(beanName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>211</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l211s0'>                for (DynamicProperty dynamic : dynamics) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l212s0'>                    String propertyName = dynamic.getPropertyName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l213s0'>                    String unparsedValue = dynamic.getUnparsedValue();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>215</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // obtain an updated value, including dependencies</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>216</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    String newValue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>217</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l217s0'>                    removeDynamic(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l218s0'>                    currentBeanName = beanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>219</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l219s0'>                    currentPropertyName = propertyName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l221s0'>                        newValue = parseStringValue(unparsedValue, newProperties, new HashSet());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l222s0'>                    } finally {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>                        currentBeanName = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l224s0'>                        currentPropertyName = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>225</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l225s0'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>226</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l226s0' title='Executions: 0' class='uncovered'>if (logger.isInfoEnabled()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l227s0'>                        logger.info("Updating property " + beanName + "." + propertyName + " to " + newValue);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>230</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // assign it to the bean</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>231</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>232</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l232s0'>                        beanWrapper.setPropertyValue(propertyName, newValue);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>233</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l233s0'>                    } catch (BeansException e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>234</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l234s0'>                        logger.error("Error setting property " + beanName + "." + propertyName + " to " + newValue, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>235</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>239</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>240</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // say goodbye.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l242s0'>            for (String beanName : beanNames) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>243</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l243s0'>                Object bean = beanByBeanName.get(beanName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>244</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>246</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l246s0' title='Executions: 0' class='uncovered'>if (bean instanceof IReconfigurationAware)</span> <span id='l246s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>247</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l247s0'>                        ((IReconfigurationAware) bean).afterReconfiguration();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>248</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>249</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l249s0'>                } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l250s0'>                    logger.error("Error calling afterReconfiguration on " + beanName, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>251</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>252</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>254</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l254s0'>        } catch (IOException e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>255</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l255s0'>            logger.error("Error trying to reload net.unicon.iamlabs.spring.properties.example.net.unicon.iamlabs" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>256</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l256s0'>                    ".spring" + ".properties: " + e.getMessage(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>257</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>258</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l258s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>263</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    static class DynamicProperty {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>264</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String beanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>265</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String propertyName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>266</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String unparsedValue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l267s0'>        List&lt;String> placeholders = new ArrayList&lt;String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * @param beanName
+         * @param propertyName
+         * @param unparsedValue
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>274</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l274s0'>        public DynamicProperty(String beanName, String propertyName, String unparsedValue) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>275</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l275s0'>            this.beanName = beanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>276</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l276s0'>            this.propertyName = propertyName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>277</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l277s0'>            this.unparsedValue = unparsedValue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>278</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l278s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>280</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public void addPlaceholder(String placeholder) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>281</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l281s0'>            placeholders.add(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>282</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l282s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>284</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String getUnparsedValue() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>285</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l285s0'>            return unparsedValue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>286</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>288</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String getBeanName() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>289</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l289s0'>            return beanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>290</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>292</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String getPropertyName() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>293</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l293s0'>            return propertyName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>294</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>296</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public boolean equals(Object o) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/13</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l298s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l301s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l301s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s3 l307s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s1 l306s2 l307s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s3 l309s0 l309s3 l310s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s3 l309s0 l309s1 l309s2 l310s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s1 l309s0 l309s3 l310s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s1 l309s0 l309s1 l309s2 l310s0')">I: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s3 l309s0 l309s3 l313s0')">J: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s3 l309s0 l309s1 l313s0')">K: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s1 l309s0 l309s3 l313s0')">L: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l297s0 l300s0 l300s1 l304s0 l306s0 l306s1 l309s0 l309s1 l313s0')">M: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>297</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l297s0' title='Executions: 0' class='uncovered'>if (this == o)</span> <span id='l297s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>298</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l298s0'>                return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>299</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>300</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l300s0' title='Executions: 0' class='uncovered'>if (o == null</span> || <span id='l300s1' title='Executions: 0' class='uncovered'>getClass() != o.getClass()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>301</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l301s0'>                return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>302</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>304</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l304s0'>            final DynamicProperty that = (DynamicProperty) o;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>306</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l306s0' title='Executions: 0' class='uncovered'>if (beanName != null ? !beanName.equals(that.beanName)</span> : <span id='l306s1' title='Executions: 0' class='uncovered'>that.beanName != null)</span> <span id='l306s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>307</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l307s0'>                return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>308</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>309</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l309s0' title='Executions: 0' class='uncovered'>if (propertyName != null ? !propertyName.equals(that.propertyName)</span> : <span id='l309s1' title='Executions: 0' class='uncovered'>that.propertyName != null)</span> <span id='l309s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>310</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l310s0'>                return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>311</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>313</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l313s0'>            return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>314</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>316</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public int hashCode() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>317</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            int result;</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l318s0 l318s2 l318s3 l319s0 l319s2 l319s3 l320s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l318s0 l318s2 l318s3 l319s0 l319s1 l319s3 l320s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l318s0 l318s1 l318s3 l319s0 l319s2 l319s3 l320s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l318s0 l318s1 l318s3 l319s0 l319s1 l319s3 l320s0')">D: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>318</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l318s0' title='Executions: 0' class='uncovered'>result = (beanName != null ? beanName.hashCode()</span> : <span id='l318s1' title='Executions: 0' class='uncovered'>0);</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>319</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l319s0' title='Executions: 0' class='uncovered'>result = 29 * result + (propertyName != null ? propertyName.hashCode()</span> : <span id='l319s1' title='Executions: 0' class='uncovered'>0);</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>320</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l320s0'>            return result;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>321</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>322</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>324</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l324s0'>    private Map&lt;DynamicProperty, DynamicProperty> dynamicProperties = new HashMap&lt;DynamicProperty, DynamicProperty>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>325</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l325s0'>    private Map&lt;String, List&lt;DynamicProperty>> placeholderToDynamics = new HashMap&lt;String, List&lt;DynamicProperty>>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 建立 placeholder 与 dynamic 的对应关系
+     *
+     * @param dynamic
+     * @param placeholder
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>333</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void addDependency(DynamicProperty dynamic, String placeholder) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>334</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l334s0'>        List&lt;DynamicProperty> l = placeholderToDynamics.get(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>335</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l335s0' title='Executions: 0' class='uncovered'>if (l == null)</span> <span id='l335s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>336</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l336s0'>            l = new ArrayList&lt;DynamicProperty>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>337</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l337s0'>            placeholderToDynamics.put(placeholder, l);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>338</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>339</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l339s0' title='Executions: 0' class='uncovered'>if (!l.contains(dynamic)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>340</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l340s0'>            l.add(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>341</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>342</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l342s0'>        dynamic.addPlaceholder(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>343</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l343s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 删除 placeholder 与 dynamic 的对应关系
+     *
+     * @param dynamic
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>350</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void removeDynamic(DynamicProperty dynamic) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>351</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l351s0'>        List&lt;String> placeholders = dynamic.placeholders;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>352</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l352s0'>        for (String placeholder : placeholders) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>353</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l353s0'>            List&lt;DynamicProperty> l = placeholderToDynamics.get(placeholder);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>354</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l354s0'>            l.remove(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>355</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>356</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l356s0'>        dynamic.placeholders.clear();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>357</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l357s0'>        dynamicProperties.remove(dynamic);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>358</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l358s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>360</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String currentBeanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>361</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String currentPropertyName;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * copy & paste, just so we can insert our own visitor.
+     * 启动时 进行配置的解析
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>367</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>368</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            throws BeansException {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>370</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l370s0'>        BeanDefinitionVisitor visitor =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>371</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l371s0'>                new ReloadingPropertyPlaceholderConfigurer.PlaceholderResolvingBeanDefinitionVisitor(props);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>372</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l372s0'>        String[] beanNames = beanFactoryToProcess.getBeanDefinitionNames();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>373</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l373s0'>        for (int i = 0; i &lt; beanNames.length; i++) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>374</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // Check that we're not parsing our own bean definition,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>375</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // to avoid failing on unresolvable placeholders in net.unicon.iamlabs.spring.properties.example.net</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>376</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // .unicon.iamlabs.spring.properties file locations.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>377</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l377s0' title='Executions: 0' class='uncovered'>if (!(beanNames[i].equals(this.beanName)</span> && <span id='l377s1' title='Executions: 0' class='uncovered'>beanFactoryToProcess.equals(this.beanFactory))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>378</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l378s0'>                this.currentBeanName = beanNames[i];</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>379</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>380</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l380s0'>                    BeanDefinition bd = beanFactoryToProcess.getBeanDefinition(beanNames[i]);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>381</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>382</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l382s0'>                        visitor.visitBeanDefinition(bd);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>383</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l383s0'>                    } catch (BeanDefinitionStoreException ex) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>384</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l384s0'>                        throw new BeanDefinitionStoreException(bd.getResourceDescription(), beanNames[i],</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>385</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l385s0'>                                ex.getMessage());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>386</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>387</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l387s0'>                } finally {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>388</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l388s0'>                    currentBeanName = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>389</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l389s0'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>390</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>391</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>393</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l393s0'>        StringValueResolver stringValueResolver = new PlaceholderResolvingStringValueResolver(props);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>395</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // New in Spring 2.5: resolve placeholders in alias target names and aliases as well.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>396</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l396s0'>        beanFactoryToProcess.resolveAliases(stringValueResolver);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>398</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // New in Spring 3.0: resolve placeholders in embedded values such as annotation attributes.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>399</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l399s0'>        beanFactoryToProcess.addEmbeddedValueResolver(stringValueResolver);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>400</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l400s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * afterPropertiesSet
+     * 将自己 添加 property listener
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>406</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void afterPropertiesSet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>407</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l407s0'>        for (Properties properties : propertiesArray) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>408</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l408s0' title='Executions: 0' class='uncovered'>if (properties instanceof ReloadableProperties)</span> <span id='l408s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>409</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l409s0'>                logger.debug("add property listener: " + properties.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>410</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l410s0'>                ((ReloadableProperties) properties).addReloadablePropertiesListener(this);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>411</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>412</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>413</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l413s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * destroy
+     * 删除 property listener
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>421</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void destroy() throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>422</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l422s0'>        for (Properties properties : propertiesArray) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>423</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l423s0' title='Executions: 0' class='uncovered'>if (properties instanceof ReloadableProperties)</span> <span id='l423s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>424</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l424s0'>                logger.debug("remove property listener: " + properties.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>425</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l425s0'>                ((ReloadableProperties) properties).removeReloadablePropertiesListener(this);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>426</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>427</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>428</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l428s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 替换掉spring的 config resolver，这样我们才可以解析掉自己的config
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>433</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private class PlaceholderResolvingBeanDefinitionVisitor extends BeanDefinitionVisitor {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>435</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private final Properties props;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>437</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l437s0'>        public PlaceholderResolvingBeanDefinitionVisitor(Properties props) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>438</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l438s0'>            this.props = props;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>439</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l439s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>441</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected void visitPropertyValues(MutablePropertyValues pvs) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l442s0 l447s0 l451s0 l454s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l442s0 l447s0 l448s0 l451s0 l454s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>442</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l442s0'>            PropertyValue[] pvArray = pvs.getPropertyValues();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>443</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l443s0'>            for (PropertyValue pv : pvArray) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>444</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l444s0'>                currentPropertyName = pv.getName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>445</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>446</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l446s0'>                    Object newVal = resolveValue(pv.getValue());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>447</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l447s0' title='Executions: 0' class='uncovered'>if (!ObjectUtils.nullSafeEquals(newVal, pv.getValue())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>448</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l448s0'>                        pvs.addPropertyValue(pv.getName(), newVal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>449</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>450</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l450s0'>                } finally {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>451</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l451s0'>                    currentPropertyName = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>452</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l452s0'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>453</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>454</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l454s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>456</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        protected String resolveStringValue(String strVal) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>457</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l457s0'>            return parseStringValue(strVal, this.props, new HashSet());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>458</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>459</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>464</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected class PlaceholderResolvingStringValueResolver implements StringValueResolver {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>466</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private final Properties props;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>468</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l468s0'>        public PlaceholderResolvingStringValueResolver(Properties props) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>469</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l469s0'>            this.props = props;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>470</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l470s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>472</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>473</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String resolveStringValue(String strVal) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>474</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l474s0'>            return parseStringValue(strVal, this.props, new HashSet());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>475</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>476</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * the application context is needed to find the beans again during reconfiguration
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>481</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private ApplicationContext applicationContext;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>483</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>484</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l484s0'>        this.applicationContext = applicationContext;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>485</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l485s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>487</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setProperties(Properties properties) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>488</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l488s0'>        setPropertiesArray(new Properties[] {properties});</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>489</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l489s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>491</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setPropertiesArray(Properties[] propertiesArray) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>492</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l492s0'>        this.propertiesArray = propertiesArray;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>493</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l493s0'>        super.setPropertiesArray(propertiesArray);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>494</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l494s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>496</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setPlaceholderPrefix(String placeholderPrefix) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>497</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l497s0'>        this.placeholderPrefix = placeholderPrefix;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>498</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l498s0'>        super.setPlaceholderPrefix(placeholderPrefix);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>499</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l499s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>501</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setPlaceholderSuffix(String placeholderSuffix) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>502</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l502s0'>        this.placeholderSuffix = placeholderSuffix;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>503</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l503s0'>        super.setPlaceholderSuffix(placeholderPrefix);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>504</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l504s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>506</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setBeanName(String beanName) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>507</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l507s0'>        this.beanName = beanName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>508</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l508s0'>        super.setBeanName(beanName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>509</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l509s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>511</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setBeanFactory(BeanFactory beanFactory) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>512</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l512s0'>        this.beanFactory = beanFactory;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>513</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l513s0'>        super.setBeanFactory(beanFactory);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>514</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l514s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>515</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

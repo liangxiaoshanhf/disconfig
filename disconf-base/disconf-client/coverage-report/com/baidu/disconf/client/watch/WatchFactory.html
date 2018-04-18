@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - WatchFactory.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\watch\WatchFactory.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.watch;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.config.ConfigMgr;
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.config.DisClientSysConfig;
+import com.baidu.disconf.client.fetcher.FetcherMgr;
+import com.baidu.disconf.client.watch.impl.WatchMgrImpl;
+import com.baidu.disconf.core.common.path.DisconfWebPathMgr;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 监控器 实例 工厂
+ *
+ * @author liaoqiqi
+ * @version 2014-7-29
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>19</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l19s0'>public class WatchFactory {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(WatchFactory.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>    private static String <span class='static uncovered' title='Reads: 0 Writes: 0'>hosts</span> = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>    private static String <span class='static uncovered' title='Reads: 0 Writes: 0'>zooPrefix</span> = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>    private static final Object hostsSync = new Object();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static WatchMgr getWatchMgr(FetcherMgr fetcherMgr) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/8</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l33s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l37s0 l38s0 l43s0 l55s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l37s0 l38s0 l38s1 l43s0 l55s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l36s1 l37s0 l38s0 l43s0 l55s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l36s1 l37s0 l38s0 l38s1 l43s0 l55s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l37s0 l38s0 l38s1 l66s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l36s1 l66s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l32s0 l36s0 l36s1 l37s0 l38s0 l38s1 l66s0')">H: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l32s0' title='Executions: 0' class='uncovered'>if (!ConfigMgr.isInit()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>            throw new Exception("ConfigMgr should be init before WatchFactory.getWatchMgr");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l36s0' title='Executions: 0' class='uncovered'>if (hosts == null</span> || <span id='l36s1' title='Executions: 0' class='uncovered'>zooPrefix == null)</span> <span id='l36s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l37s0' title='Executions: 0' class='uncovered'>synchronized(hostsSync) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l38s0' title='Executions: 0' class='uncovered'>if (hosts == null</span> || <span id='l38s1' title='Executions: 0' class='uncovered'>zooPrefix == null)</span> <span id='l38s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 获取 Zoo Hosts</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>                        hosts = fetcherMgr.getValueFromServer(DisconfWebPathMgr.getZooHostsUrl(DisClientSysConfig</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>                                                                                                   .getInstance()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>                                                                                                   .CONF_SERVER_ZOO_ACTION));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>                        zooPrefix = fetcherMgr.getValueFromServer(DisconfWebPathMgr.getZooPrefixUrl(DisClientSysConfig</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>                                                                                                        .getInstance</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                                                                                             ()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l50s0'>                                                                                                        .CONF_SERVER_ZOO_ACTION));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>                        WatchMgr watchMgr = new WatchMgrImpl();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>                        watchMgr.init(hosts, zooPrefix, DisClientConfig.getInstance().DEBUG);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>55</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l55s0'>                        return watchMgr;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>                    } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>                        LOGGER.error("cannot get watch module", e);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>        return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

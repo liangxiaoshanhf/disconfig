@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ScanDynamicModel.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\scan\inner\dynamic\model\ScanDynamicModel.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.scan.inner.dynamic.model;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.baidu.disconf.client.common.model.DisconfKey;
+import com.baidu.disconf.client.common.update.IDisconfUpdate;
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 动态扫描对象
+ *
+ * @author liaoqiqi
+ * @version 2014-6-18
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>17</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l17s0'>public class ScanDynamicModel {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>19</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置及影响的回调函数, Key为配置项KEY 或 配置文件</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>20</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l20s0'>    private Map&lt;DisconfKey, List&lt;IDisconfUpdate>> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfUpdateServiceInverseIndexMap</span> =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>            new HashMap&lt;DisconfKey, List&lt;IDisconfUpdate>>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private IDisconfUpdatePipeline <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfUpdatePipeline</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;DisconfKey, List&lt;IDisconfUpdate>> getDisconfUpdateServiceInverseIndexMap() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l26s0'>        return disconfUpdateServiceInverseIndexMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public IDisconfUpdatePipeline getDisconfUpdatePipeline() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l30s0'>        return disconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfUpdatePipeline(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            IDisconfUpdatePipeline disconfUpdatePipeline) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>        this.disconfUpdatePipeline = disconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfUpdateServiceInverseIndexMap(Map&lt;DisconfKey,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            List&lt;IDisconfUpdate>></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                                                               disconfUpdateServiceInverseIndexMap) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>        this.disconfUpdateServiceInverseIndexMap = disconfUpdateServiceInverseIndexMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>        return "ScanDynamicModel{" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>                "disconfUpdateServiceInverseIndexMap=" + disconfUpdateServiceInverseIndexMap +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>                ", disconfUpdatePipeline=" + disconfUpdatePipeline +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>                '}';</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

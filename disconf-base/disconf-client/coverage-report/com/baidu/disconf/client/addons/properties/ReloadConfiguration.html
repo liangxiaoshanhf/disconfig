@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ReloadConfiguration.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\addons\properties\ReloadConfiguration.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.addons.properties;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.ArrayList;
+import java.util.List;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 线程方式的reload
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>9</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l9s0'>public class ReloadConfiguration implements Runnable {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>10</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    List&lt;ReconfigurableBean> <span class='instance uncovered' title='Reads: 0 Writes: 0'>reconfigurableBeans</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>12</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setReconfigurableBeans(List reconfigurableBeans) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>13</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // early type check, and avoid aliassing</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>14</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l14s0'>        this.reconfigurableBeans = new ArrayList&lt;ReconfigurableBean>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>15</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l15s0'>        for (Object o : reconfigurableBeans) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>16</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l16s0'>            this.reconfigurableBeans.add((ReconfigurableBean) o);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>17</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>18</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l18s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void run() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l21s0'>        for (ReconfigurableBean bean : reconfigurableBeans) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>                bean.reloadConfiguration();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>                throw new RuntimeException("while reloading configuration of " + bean, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l28s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

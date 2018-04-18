@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - ScanStaticModel.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\scan\inner\statically\model\ScanStaticModel.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.scan.inner.statically.model;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Set;
+
+import org.reflections.Reflections;
+
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 扫描静态存储的对象
+ *
+ * @author liaoqiqi
+ * @version 2014-6-9
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>17</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l17s0'>public class ScanStaticModel {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>19</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Reflections <span class='instance uncovered' title='Reads: 0 Writes: 0'>reflections</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置文件</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;Class&lt;?>> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfFileClassSet</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置文件中的函数</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;Method> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfFileItemMethodSet</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置文件及其函数的MAP, KEY为配置文件类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Map&lt;Class&lt;?>, Set&lt;Method>> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfFileItemMap</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置ITEM</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;Method> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfItemMethodSet</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 主从切换的回调函数类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;Class&lt;?>> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfActiveBackupServiceClassSet</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 更新 回调函数类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;Class&lt;?>> <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfUpdateService</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>    private Class&lt;IDisconfUpdatePipeline> <span class='instance uncovered' title='Reads: 0 Writes: 0'>iDisconfUpdatePipeline</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 只是托管的配置文件，没有注入到类中</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;String> <span class='instance uncovered' title='Reads: 0 Writes: 0'>justHostFiles</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // reload files</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Set&lt;String> <span class='instance uncovered' title='Reads: 0 Writes: 0'>reloadableFiles</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Reflections getReflections() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>        return reflections;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setReflections(Reflections reflections) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>        this.reflections = reflections;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>59</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;Class&lt;?>> getDisconfFileClassSet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l60s0'>        return disconfFileClassSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfFileClassSet(Set&lt;Class&lt;?>> disconfFileClassSet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l64s0'>        this.disconfFileClassSet = disconfFileClassSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;Class&lt;?>, Set&lt;Method>> getDisconfFileItemMap() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l68s0'>        return disconfFileItemMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfFileItemMap(Map&lt;Class&lt;?>, Set&lt;Method>> disconfFileItemMap) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        this.disconfFileItemMap = disconfFileItemMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>75</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;Method> getDisconfItemMethodSet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l76s0'>        return disconfItemMethodSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfItemMethodSet(Set&lt;Method> disconfItemMethodSet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>        this.disconfItemMethodSet = disconfItemMethodSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l81s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;Method> getDisconfFileItemMethodSet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l84s0'>        return disconfFileItemMethodSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfFileItemMethodSet(Set&lt;Method> disconfFileItemMethodSet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>        this.disconfFileItemMethodSet = disconfFileItemMethodSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l89s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;Class&lt;?>> getDisconfActiveBackupServiceClassSet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>        return disconfActiveBackupServiceClassSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfActiveBackupServiceClassSet(Set&lt;Class&lt;?>> disconfActiveBackupServiceClassSet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>        this.disconfActiveBackupServiceClassSet = disconfActiveBackupServiceClassSet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;Class&lt;?>> getDisconfUpdateService() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>        return disconfUpdateService;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>103</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setDisconfUpdateService(Set&lt;Class&lt;?>> disconfUpdateService) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l104s0'>        this.disconfUpdateService = disconfUpdateService;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l105s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;String> getReloadableFiles() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l108s0'>        return reloadableFiles;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setReloadableFiles(Set&lt;String> reloadableFiles) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l112s0'>        this.reloadableFiles = reloadableFiles;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l113s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;String> getJustHostFiles() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>        return justHostFiles;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setJustHostFiles(Set&lt;String> justHostFiles) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l120s0'>        this.justHostFiles = justHostFiles;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>123</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Class&lt;IDisconfUpdatePipeline> getiDisconfUpdatePipeline() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l124s0'>        return iDisconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setiDisconfUpdatePipeline(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            Class&lt;IDisconfUpdatePipeline> iDisconfUpdatePipeline) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>        this.iDisconfUpdatePipeline = iDisconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l130s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>        return "ScanStaticModel{" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>                "reflections=" + reflections +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l136s0'>                ", disconfFileClassSet=" + disconfFileClassSet +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l137s0'>                ", disconfFileItemMethodSet=" + disconfFileItemMethodSet +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l138s0'>                ", disconfFileItemMap=" + disconfFileItemMap +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l139s0'>                ", disconfItemMethodSet=" + disconfItemMethodSet +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l140s0'>                ", iDisconfUpdatePipeline=" + iDisconfUpdatePipeline +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l141s0'>                ", disconfActiveBackupServiceClassSet=" + disconfActiveBackupServiceClassSet +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l142s0'>                ", disconfUpdateService=" + disconfUpdateService +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l143s0'>                ", justHostFiles=" + justHostFiles +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>                ", reloadableFiles=" + reloadableFiles +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l145s0'>                '}';</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

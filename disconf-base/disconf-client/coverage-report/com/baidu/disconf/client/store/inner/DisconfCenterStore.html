@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfCenterStore.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\store\inner\DisconfCenterStore.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.store.inner;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.model.DisconfCenterBaseModel;
+import com.baidu.disconf.client.common.model.DisconfCenterFile;
+import com.baidu.disconf.client.common.model.DisconfCenterItem;
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置仓库,是个单例
+ *
+ * @author liaoqiqi
+ * @version 2014-6-9
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class DisconfCenterStore {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfCenterStore.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>    private DisconfCenterStore() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 类级的内部类，也就是静态的成员式内部类，该内部类的实例与外部类的实例 没有绑定关系，而且只有被调用到时才会装载，从而实现了延迟加载。
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l32s0'>    private static class SingletonHolder {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 静态初始化器，由JVM来保证线程安全
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>        private static DisconfCenterStore instance = new DisconfCenterStore();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static DisconfCenterStore getInstance() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>        return SingletonHolder.instance;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 每个配置文件一条</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // key: 配置文件名</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // value: 配置文件数据</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>    private Map&lt;String, DisconfCenterFile> confFileMap = new HashMap&lt;String, DisconfCenterFile>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 每个配置Item一条</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // key: 配置项的Key</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // value: 配置项数据</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>    private Map&lt;String, DisconfCenterItem> confItemMap = new HashMap&lt;String, DisconfCenterItem>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 主备切换时的Key列表</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private List&lt;String> activeBackupKeyList;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='comment'>    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>    private IDisconfUpdatePipeline iDisconfUpdatePipeline = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>59</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 标识本机器名</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String machineName;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 存储 一个配置文件
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void storeOneFile(DisconfCenterBaseModel disconfCenterBaseModel) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>        DisconfCenterFile disconfCenterFile = (DisconfCenterFile) disconfCenterBaseModel;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>        String fileName = disconfCenterFile.getFileName();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l71s0' title='Executions: 0' class='uncovered'>if (confFileMap.containsKey(fileName)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>            LOGGER.warn("There are two same fileName key!!!! " + fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>            DisconfCenterFile existCenterFile = confFileMap.get(fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 如果是 同时使用了 注解式 和 非注解式 两种方式，则当修改时也要 进行 XML 式 reload</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l77s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile.isTaggedWithNonAnnotationFile()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l78s0'>                existCenterFile.setIsTaggedWithNonAnnotationFile(true);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>81</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l81s0'>        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l82s0'>            confFileMap.put(fileName, disconfCenterFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l84s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 存储 一个配置项
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void storeOneItem(DisconfCenterBaseModel disconfCenterBaseModel) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>        DisconfCenterItem disconfCenterItem = (DisconfCenterItem) disconfCenterBaseModel;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>        String key = disconfCenterItem.getKey();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>95</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l95s0' title='Executions: 0' class='uncovered'>if (confItemMap.containsKey(key)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>            LOGGER.error("There are two same item key!!!! " + "first: " + confItemMap.get(key).getClass().toString() +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l98s0'>                    ", Second: " + disconfCenterItem.getClass().toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l99s0'>        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>            confItemMap.put(key, disconfCenterItem);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l102s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 删除一个配置项
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void excludeOneItem(String key) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l109s0' title='Executions: 0' class='uncovered'>if (confItemMap.containsKey(key)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l110s0'>            confItemMap.remove(key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l112s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 删除一个配置文件
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void excludeOneFile(String key) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>119</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l119s0' title='Executions: 0' class='uncovered'>if (confFileMap.containsKey(key)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l120s0'>            confFileMap.remove(key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l122s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;String, DisconfCenterFile> getConfFileMap() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l125s0'>        return confFileMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;String, DisconfCenterItem> getConfItemMap() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>        return confItemMap;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public List&lt;String> getActiveBackupKeyList() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l133s0'>        return activeBackupKeyList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>136</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getMachineName() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l137s0'>        return machineName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>140</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setMachineName(String machineName) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l141s0'>        this.machineName = machineName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l142s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>144</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public IDisconfUpdatePipeline getiDisconfUpdatePipeline() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l145s0'>        return iDisconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setiDisconfUpdatePipeline(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            IDisconfUpdatePipeline iDisconfUpdatePipeline) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>        this.iDisconfUpdatePipeline = iDisconfUpdatePipeline;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l151s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>152</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

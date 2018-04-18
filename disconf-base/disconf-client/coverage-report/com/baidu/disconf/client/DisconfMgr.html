@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfMgr.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\DisconfMgr.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+import com.baidu.disconf.client.config.ConfigMgr;
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.core.DisconfCoreFactory;
+import com.baidu.disconf.client.core.DisconfCoreMgr;
+import com.baidu.disconf.client.scan.ScanFactory;
+import com.baidu.disconf.client.scan.ScanMgr;
+import com.baidu.disconf.client.store.DisconfStoreProcessorFactory;
+import com.baidu.disconf.client.support.registry.Registry;
+import com.baidu.disconf.client.support.registry.RegistryFactory;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * Disconf Client 总入口
+ *
+ * @author liaoqiqi
+ * @version 2014-5-23
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class DisconfMgr implements ApplicationContextAware {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l30s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfMgr.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 本实例不能初始化两次</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>    private boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>isFirstInit</span> = false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>    private boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>isSecondInit</span> = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // application context</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private ApplicationContext <span class='instance uncovered' title='Reads: 0 Writes: 0'>applicationContext</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 核心处理器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>    private DisconfCoreMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfCoreMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>42</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // scan mgr</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>    private ScanMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>scanMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>    protected static final DisconfMgr INSTANCE = new DisconfMgr();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static DisconfMgr getInstance() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>        return INSTANCE;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>    private DisconfMgr() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 总入口
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public synchronized void start(List&lt;String> scanPackageList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l60s0'>        firstScan(scanPackageList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l62s0'>        secondScan();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第一次扫描，静态扫描 for annotation config
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected synchronized void firstScan(List&lt;String> scanPackageList) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 该函数不能调用两次</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l71s0 l72s0 l73s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l71s0 l83s0 l109s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l71s0' title='Executions: 0' class='uncovered'>if (isFirstInit)</span> <span id='l71s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>            LOGGER.info("DisConfMgr has been init, ignore........");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 导入配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>            ConfigMgr.init();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>            LOGGER.info("******************************* DISCONF START FIRST SCAN *******************************");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // registry</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>            Registry registry = RegistryFactory.getSpringRegistry(applicationContext);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>90</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 扫描器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>            scanMgr = ScanFactory.getScanMgr(registry);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 第一次扫描并入库</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>            scanMgr.firstScan(scanPackageList);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取数据/注入/Watch</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>            disconfCoreMgr = DisconfCoreFactory.getDisconfCoreMgr(registry);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l98s0'>            disconfCoreMgr.process();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l101s0'>            isFirstInit = true;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>103</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l103s0'>            LOGGER.info("******************************* DISCONF END FIRST SCAN *******************************");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>105</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l105s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>            LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 第二次扫描, 动态扫描, for annotation config
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected synchronized void secondScan() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>116</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 该函数必须第一次运行后才能运行</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/22</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l118s0 l119s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l124s0 l125s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l147s0 l152s0 l168s0 l169s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l168s0 l169s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l165s0 l168s0 l169s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l168s0 l169s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l165s0 l168s0 l169s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l140s0 l147s0 l152s0 l168s0 l169s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l168s0 l169s0')">I: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l165s0 l168s0 l169s0')">J: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l168s0 l169s0')">K: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l165s0 l168s0 l169s0')">L: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l147s0 l152s0 l168s0 l169s0')">M: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l168s0 l169s0')">N: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l165s0 l168s0 l169s0')">O: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l168s0 l169s0')">P: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l165s0 l168s0 l169s0')">Q: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l140s0 l147s0 l152s0 l168s0 l169s0')">R: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l168s0 l169s0')">S: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l162s0 l164s0 l165s0 l168s0 l169s0')">T: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l168s0 l169s0')">U: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l117s0 l123s0 l128s0 l133s0 l134s0 l139s0 l140s0 l147s0 l152s0 l155s0 l157s0 l158s0 l162s0 l164s0 l165s0 l168s0 l169s0')">V: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l117s0' title='Executions: 0' class='uncovered'>if (!isFirstInit)</span> <span id='l117s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l118s0'>            LOGGER.info("should run First Scan before Second Scan.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l119s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 第二次扫描也只能做一次</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l123s0' title='Executions: 0' class='uncovered'>if (isSecondInit)</span> <span id='l123s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l124s0'>            LOGGER.info("should not run twice.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l125s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>        LOGGER.info("******************************* DISCONF START SECOND SCAN *******************************");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 扫描回调函数</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l133s0' title='Executions: 0' class='uncovered'>if (scanMgr != null)</span> <span id='l133s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>                scanMgr.secondScan();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 注入数据至配置实体中</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取数据/注入/Watch</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l139s0' title='Executions: 0' class='uncovered'>if (disconfCoreMgr != null)</span> <span id='l139s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l140s0'>                disconfCoreMgr.inject2DisconfInstance();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l143s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>            LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>        isSecondInit = true;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 不开启 则不要打印变量map</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l152s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().ENABLE_DISCONF) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l155s0'>            String data = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l156s0'>                    .confToString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>157</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l157s0' title='Executions: 0' class='uncovered'>if (!StringUtils.isEmpty(data)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l158s0'>                LOGGER.info("Conf File Map: {}", data);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l162s0'>            data = DisconfStoreProcessorFactory.getDisconfStoreItemProcessor()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>163</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l163s0'>                    .confToString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>164</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l164s0' title='Executions: 0' class='uncovered'>if (!StringUtils.isEmpty(data)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>165</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l165s0'>                LOGGER.info("Conf Item Map: {}", data);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>        LOGGER.info("******************************* DISCONF END *******************************");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l169s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * reloadable config file scan, for xml config
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>174</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public synchronized void reloadableScan(String fileName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/7</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l177s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l200s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l183s0 l200s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l183s0 l185s0 l189s0 l192s0 l200s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l183s0 l185s0 l189s0 l190s0 l192s0 l200s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l183s0 l185s0 l186s0 l189s0 l192s0 l200s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l176s0 l180s0 l183s0 l185s0 l186s0 l189s0 l190s0 l192s0 l200s0')">G: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l176s0' title='Executions: 0' class='uncovered'>if (!isFirstInit)</span> <span id='l176s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>180</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l180s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().ENABLE_DISCONF) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>181</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>183</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l183s0' title='Executions: 0' class='uncovered'>if (!DisClientConfig.getInstance().getIgnoreDisconfKeySet().contains(fileName)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l185s0' title='Executions: 0' class='uncovered'>if (scanMgr != null)</span> <span id='l185s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>                        scanMgr.reloadableScan(fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>189</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l189s0' title='Executions: 0' class='uncovered'>if (disconfCoreMgr != null)</span> <span id='l189s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>                        disconfCoreMgr.processFile(fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>192</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l192s0'>                    LOGGER.debug("disconf reloadable file: {}", fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>195</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l195s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>197</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l197s0'>                LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @Description: 总关闭
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public synchronized void close() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // disconfCoreMgr</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l210s0 l211s0 l216s0 l223s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l210s0 l211s0 l212s0 l216s0 l223s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l210s0'>            LOGGER.info("******************************* DISCONF CLOSE *******************************");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>211</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l211s0' title='Executions: 0' class='uncovered'>if (disconfCoreMgr != null)</span> <span id='l211s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l212s0'>                disconfCoreMgr.release();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>215</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // close, 必须将其设置为False,以便重新更新</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>216</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l216s0'>            isFirstInit = false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>217</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l217s0'>            isSecondInit = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>219</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l219s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>221</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l221s0'>            LOGGER.error("DisConfMgr close Failed.", e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>225</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>226</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l227s0'>        this.applicationContext = applicationContext;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l228s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

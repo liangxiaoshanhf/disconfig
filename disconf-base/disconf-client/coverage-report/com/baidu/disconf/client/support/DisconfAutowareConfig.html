@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfAutowareConfig.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\support\DisconfAutowareConfig.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.support;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.annotations.DisconfFileItem;
+import com.baidu.disconf.client.config.inner.DisInnerConfigAnnotation;
+import com.baidu.disconf.client.support.utils.ClassUtils;
+import com.baidu.disconf.client.support.utils.ConfigLoaderUtils;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置导入工具
+ *
+ * @author liaoqiqi
+ * @version 2014-6-6
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public final class DisconfAutowareConfig {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>    private DisconfAutowareConfig() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfAutowareConfig.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 先用TOMCAT模式进行导入配置文件，若找不到，则用项目目录模式进行导入
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static Properties getProperties(final String propertyFilePath) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 使用全路径的配置文件载入器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>        return ConfigLoaderUtils.loadConfig(propertyFilePath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 使用 system env 进行数据导入, 能识别   DisInnerConfigAnnotation 的标识
+     *
+     * @Description: auto ware
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void autowareConfigWithSystemEnv(final Object obj) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l47s0 l51s0 l49s1 l87s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l47s0 l51s0 l53s0 l62s0 l69s0 l49s1 l87s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l47s0 l51s0 l53s0 l62s0 l69s0 l73s0 l49s1 l87s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l47s0 l51s0 l53s0 l54s0 l49s1 l87s0')">D: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>            Field[] fields = obj.getClass().getDeclaredFields();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>            for (Field field : fields) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l51s0' title='Executions: 0' class='uncovered'>if (field.isAnnotationPresent(DisInnerConfigAnnotation.class)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l53s0' title='Executions: 0' class='uncovered'>if (Modifier.isStatic(field.getModifiers())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l54s0'>                        continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    String name;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    String value;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // disconf使用的配置</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l62s0'>                    DisInnerConfigAnnotation config = field.getAnnotation(DisInnerConfigAnnotation.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>                    name = config.name();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 优先使用 系统参数或命令行导入</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>                    value = System.getProperty(name);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>                    field.setAccessible(true);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l69s0' title='Executions: 0' class='uncovered'>if (null != value)</span> <span id='l69s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>                            ClassUtils.setFieldValeByType(field, obj, value);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>                        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>                            LOGGER.error(String.format("invalid config: %s", name), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>            throw new Exception("error while autowareConfigWithSystemEnv autowire config file", e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 自动导入配置数据,能识别 DisconfFileItem 或 DisInnerConfigAnnotation 的标识
+     *
+     * @Description: auto ware
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void autowareConfig(final Object obj, Properties prop) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l97s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l96s1 l97s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l96s1 l102s0 l104s1 l159s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l96s0' title='Executions: 0' class='uncovered'>if (null == prop</span> || <span id='l96s1' title='Executions: 0' class='uncovered'>obj == null)</span> <span id='l96s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>            throw new Exception("cannot autowareConfig null");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l102s0'>            Field[] fields = obj.getClass().getDeclaredFields();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l104s0'>            for (Field field : fields) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l106s0' title='Executions: 0' class='uncovered'>if (field.isAnnotationPresent(DisconfFileItem.class)</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                        || <span id='l107s1' title='Executions: 0' class='uncovered'>field.isAnnotationPresent(DisInnerConfigAnnotation.class)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l109s0' title='Executions: 0' class='uncovered'>if (Modifier.isStatic(field.getModifiers())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l110s0'>                        continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    String name;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    String value;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l116s0' title='Executions: 0' class='uncovered'>if (field.isAnnotationPresent(DisconfFileItem.class)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l118s0'>                        name = field.getName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l119s0'>                        value = prop.getProperty(name, null);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>                    } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>123</td><td>&nbsp;</td>
+      <td><pre class='comment'>                        // disconf使用的配置</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l125s0'>                        DisInnerConfigAnnotation config = field.getAnnotation(DisInnerConfigAnnotation.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l126s0'>                        name = config.name();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>                        String defaultValue = config.defaultValue();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>                        value = prop.getProperty(name, defaultValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>131</td><td>&nbsp;</td>
+      <td><pre class='comment'>                        // using disconf as prefix to avoid env confusion</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                        <span id='l132s0' title='Executions: 0' class='uncovered'>if (value.equals(defaultValue)</span> && <span id='l132s1' title='Executions: 0' class='uncovered'>name != null)</span> <span id='l132s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                            <span id='l133s0' title='Executions: 0' class='uncovered'>if (name.contains("disconf.")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>                                String newName = name.substring(name.indexOf('.') + 1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>                                value = prop.getProperty(newName, defaultValue);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l140s0'>                    field.setAccessible(true);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l142s0' title='Executions: 0' class='uncovered'>if (null != value)</span> <span id='l142s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>144</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l146s0'>                            ClassUtils.setFieldValeByType(field, obj, value);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>148</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l148s0'>                        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>                            LOGGER.error(String.format("invalid config: %s", name), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>152</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l155s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>157</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l157s0'>            throw new Exception("error while autowire config file", e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l159s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 自动导入某个配置文件
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void autowareConfig(final Object obj, final String propertyFilePath) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>168</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 读配置文件</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l169s0 l170s0 l171s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l169s0 l170s0 l170s1 l171s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l169s0 l170s0 l170s1 l174s0 l175s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l169s0'>        Properties prop = getProperties(propertyFilePath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l170s0' title='Executions: 0' class='uncovered'>if (null == prop</span> || <span id='l170s1' title='Executions: 0' class='uncovered'>obj == null)</span> <span id='l170s2' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l171s0'>            throw new Exception("cannot autowareConfig " + propertyFilePath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>        autowareConfig(obj, prop);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l175s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 自动导入Static配置数据,能识别 DisconfFileItem 或 DisconfFileItem 的标识
+     *
+     * @Description: auto ware
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>182</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static void autowareStaticConfig(Class&lt;?> cls, Properties prop) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l184s0 l185s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l184s0 l190s0 l192s1 l213s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l184s0' title='Executions: 0' class='uncovered'>if (null == prop)</span> <span id='l184s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l185s0'>            throw new Exception("cannot autowareConfig null");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>            Field[] fields = cls.getDeclaredFields();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>192</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l192s0'>            for (Field field : fields) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>194</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l194s0' title='Executions: 0' class='uncovered'>if (field.isAnnotationPresent(DisconfFileItem.class)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>196</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l196s0' title='Executions: 0' class='uncovered'>if (!Modifier.isStatic(field.getModifiers())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>197</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l197s0'>                        continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>                    field.setAccessible(true);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>                    String name = field.getName();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l203s0'>                    Object value = prop.getProperty(name, null);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>204</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l204s0' title='Executions: 0' class='uncovered'>if (value != null)</span> <span id='l204s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l205s0'>                        ClassUtils.setFieldValeByType(field, null, String.valueOf(value));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l209s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>211</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l211s0'>            throw new Exception("error while autowire config file", e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l213s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 自动导入配置文件至 static变量
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void autowareStaticConfig(Class&lt;?> cls, final String propertyFilePath) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>222</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 读配置文件</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l223s0 l224s0 l225s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l223s0 l224s0 l228s0 l229s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>        Properties prop = getProperties(propertyFilePath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l224s0' title='Executions: 0' class='uncovered'>if (null == prop)</span> <span id='l224s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>225</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l225s0'>            throw new Exception("cannot autowareConfig " + propertyFilePath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>226</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>228</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l228s0'>        autowareStaticConfig(cls, prop);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l229s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>231</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

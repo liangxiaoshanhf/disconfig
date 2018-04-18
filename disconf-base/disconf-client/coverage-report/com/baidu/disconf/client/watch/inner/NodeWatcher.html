@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - NodeWatcher.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\watch\inner\NodeWatcher.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.watch.inner;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.Watcher.Event.EventType;
+import org.apache.zookeeper.Watcher.Event.KeeperState;
+import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.core.processor.DisconfCoreProcessor;
+import com.baidu.disconf.core.common.constants.DisConfigTypeEnum;
+import com.baidu.disconf.core.common.zookeeper.ZookeeperMgr;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 结点监控器
+ *
+ * @author liaoqiqi
+ * @version 2014-6-16
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class NodeWatcher implements Watcher {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(NodeWatcher.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l26s0'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>monitorPath</span> = "";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>    private String <span class='instance uncovered' title='Reads: 0 Writes: 0'>keyName</span> = "";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private DisConfigTypeEnum <span class='instance uncovered' title='Reads: 0 Writes: 0'>disConfigTypeEnum</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private DisconfSysUpdateCallback <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfSysUpdateCallback</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>debug</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private DisconfCoreProcessor <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfCoreMgr</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public NodeWatcher(DisconfCoreProcessor disconfCoreMgr, String monitorPath, String keyName,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                       DisConfigTypeEnum disConfigTypeEnum, DisconfSysUpdateCallback disconfSysUpdateCallback,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                       boolean debug) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>        super();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>        this.debug = debug;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>        this.disconfCoreMgr = disconfCoreMgr;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l43s0'>        this.monitorPath = monitorPath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>        this.keyName = keyName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>        this.disConfigTypeEnum = disConfigTypeEnum;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l46s0'>        this.disconfSysUpdateCallback = disconfSysUpdateCallback;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void monitorMaster() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 监控</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>        Stat stat = new Stat();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>            ZookeeperMgr.getInstance().read(monitorPath, this, stat);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>        } catch (InterruptedException e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>            LOGGER.info(e.toString());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>        } catch (KeeperException e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>            LOGGER.error("cannot monitor " + monitorPath, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l69s0'>        LOGGER.debug("monitor path: (" + monitorPath + "," + keyName + "," + disConfigTypeEnum.getModelName() +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l70s0'>                ") has been added!");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 回调函数
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void process(WatchedEvent event) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 结点更新时</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/18</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l118s0 l134s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l118s0 l120s0 l130s0 l134s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l118s0 l120s0 l122s0 l134s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l107s0 l118s0 l134s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l107s0 l118s0 l120s0 l130s0 l134s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l107s0 l118s0 l120s0 l122s0 l134s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l104s0 l118s0 l134s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l104s0 l118s0 l120s0 l130s0 l134s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l101s0 l103s0 l104s0 l118s0 l120s0 l122s0 l134s0')">I: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l118s0 l134s0')">J: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l118s0 l120s0 l130s0 l134s0')">K: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l118s0 l120s0 l122s0 l134s0')">L: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l107s0 l118s0 l134s0')">M: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l107s0 l118s0 l120s0 l130s0 l134s0')">N: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l107s0 l118s0 l120s0 l122s0 l134s0')">O: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l104s0 l118s0 l134s0')">P: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l104s0 l118s0 l120s0 l130s0 l134s0')">Q: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l82s0 l86s0 l101s0 l103s0 l104s0 l118s0 l120s0 l122s0 l134s0')">R: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l82s0' title='Executions: 0' class='uncovered'>if (event.getType() == EventType.NodeDataChanged) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>84</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>86</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l86s0'>                LOGGER.info("============GOT UPDATE EVENT " + event.toString() + ": (" + monitorPath + "," + keyName</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>                        + "," + disConfigTypeEnum.getModelName() + ")======================");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 调用回调函数, 回调函数里会重新进行监控</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>                callback();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>92</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l92s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>                LOGGER.error("monitor node exception. " + monitorPath, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 结点断开连接，这时不要进行处理</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l101s0' title='Executions: 0' class='uncovered'>if (event.getState() == KeeperState.Disconnected) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>103</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l103s0' title='Executions: 0' class='uncovered'>if (!debug)</span> <span id='l103s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l104s0'>                LOGGER.warn("============GOT Disconnected EVENT " + event.toString() + ": (" + monitorPath + ","</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l105s0'>                        + keyName + "," + disConfigTypeEnum.getModelName() + ")======================");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l106s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>                LOGGER.debug("============DEBUG MODE: GOT Disconnected EVENT " + event.toString() + ": (" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l108s0'>                        monitorPath +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>                        "," +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l110s0'>                        keyName +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l111s0'>                        "," + disConfigTypeEnum.getModelName() + ")======================");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // session expired，需要重新关注哦</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l118s0' title='Executions: 0' class='uncovered'>if (event.getState() == KeeperState.Expired) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l120s0' title='Executions: 0' class='uncovered'>if (!debug)</span> <span id='l120s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l122s0'>                LOGGER.error("============GOT Expired  " + event.toString() + ": (" + monitorPath + "," + keyName</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l123s0'>                        + "," + disConfigTypeEnum.getModelName() + ")======================");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>125</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 重新连接</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l126s0'>                ZookeeperMgr.getInstance().reconnect();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>                callback();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l130s0'>                LOGGER.debug("============DEBUG MODE: GOT Expired  " + event.toString() + ": (" + monitorPath + ","</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>131</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l131s0'>                        + "" + keyName + "," + disConfigTypeEnum.getModelName() + ")======================");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void callback() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>143</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 调用回调函数, 回调函数里会重新进行监控</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l145s0'>                disconfSysUpdateCallback.reload(disconfCoreMgr, disConfigTypeEnum, keyName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l146s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>                LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l152s0'>            LOGGER.error("monitor node exception. " + monitorPath, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l154s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

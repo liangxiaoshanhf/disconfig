@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisClientConfig.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\config\DisClientConfig.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.config;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.config.inner.DisInnerConfigAnnotation;
+import com.baidu.disconf.client.support.DisconfAutowareConfig;
+import com.baidu.disconf.core.common.constants.Constants;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * Disconf Client的用户配置文件
+ *
+ * @author liaoqiqi
+ * @version 2014-6-6
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public final class DisClientConfig {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>22</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l22s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisClientConfig.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>    protected static final DisClientConfig INSTANCE = new DisClientConfig();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static DisClientConfig getInstance() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>        return INSTANCE;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    protected static final String filename = "disconf.properties";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // disconf.properties 的路径 -D 传入</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private static final String DISCONF_CONF_FILE_PATH_ARG = "disconf.conf";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l35s0'>    private boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>isLoaded</span> = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>37</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l37s0'>    private DisClientConfig() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l39s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public synchronized boolean isLoaded() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>        return isLoaded;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * load config normal
+     *
+     * @throws Exception
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public synchronized void loadConfig(String filePath) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/5</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l53s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l56s0 l59s0 l65s0 l66s0 l71s0 l77s0 l80s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l56s0 l59s0 l65s0 l66s0 l67s0 l71s0 l77s0 l80s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l56s0 l59s0 l60s0 l65s0 l66s0 l71s0 l77s0 l80s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l56s0 l59s0 l60s0 l65s0 l66s0 l67s0 l71s0 l77s0 l80s0')">E: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l52s0' title='Executions: 0' class='uncovered'>if (isLoaded)</span> <span id='l52s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>        String filePathInternal = filename;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 指定的路径</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l59s0' title='Executions: 0' class='uncovered'>if (filePath != null)</span> <span id='l59s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l60s0'>            filePathInternal = filePath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // -d 的路径</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 优先使用 系统参数或命令行导入</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>        String disconfFilePath = System.getProperty(DISCONF_CONF_FILE_PATH_ARG);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l66s0' title='Executions: 0' class='uncovered'>if (disconfFilePath != null)</span> <span id='l66s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>            filePathInternal = disconfFilePath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>            DisconfAutowareConfig.autowareConfig(INSTANCE, filePathInternal);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>            LOGGER.warn("cannot find " + filePathInternal + ", using sys var or user input.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 使用system env 导入</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>        DisconfAutowareConfig.autowareConfigWithSystemEnv(INSTANCE);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l79s0'>        isLoaded = true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 配置文件服务器 HOST
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static final String CONF_SERVER_HOST_NAME = "disconf.conf_server_host";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = DisClientConfig.CONF_SERVER_HOST_NAME)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>CONF_SERVER_HOST</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private List&lt;String> <span class='instance uncovered' title='Reads: 0 Writes: 0'>hostList</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * app
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static final String APP_NAME = "disconf.app";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = DisClientConfig.APP_NAME)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>APP</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 版本
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static final String VERSION_NAME = "disconf.version";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = DisClientConfig.VERSION_NAME, defaultValue = Constants.DEFAULT_VERSION)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>VERSION</span> = Constants.DEFAULT_VERSION;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 主或备
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.maintype")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>MAIN_TYPE</span>;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 部署环境
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static final String ENV_NAME = "disconf.env";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = DisClientConfig.ENV_NAME, defaultValue = Constants.DEFAULT_ENV)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>ENV</span> = Constants.DEFAULT_ENV;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 是否从云端下载配置
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>136</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l136s0'>    private static final String ENABLE_REMOTE_CONF_NAME = "disconf.enable.remote.conf";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = DisClientConfig.ENABLE_REMOTE_CONF_NAME, defaultValue = "false")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l138s0'>    public boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>ENABLE_DISCONF</span> = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 是否开启DEBUG模式: 默认不开启，
+     * 1）true: 用于线下调试，当ZK断开与client连接后（如果设置断点，这个事件很容易就发生），ZK不会去重新建立连接。
+     * 2）false: 用于线上，当ZK断开与client连接后，ZK会再次去重新建立连接。
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.debug", defaultValue = "false")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l149s0'>    public boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>DEBUG</span> = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 忽略哪些分布式配置
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>157</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.ignore", defaultValue = "")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l158s0'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>IGNORE_DISCONF_LIST</span> = "";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l159s0'>    private Set&lt;String> <span class='instance uncovered' title='Reads: 0 Writes: 0'>ignoreDisconfKeySet</span> = new HashSet&lt;String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取远程配置 重试次数，默认是3次
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.conf_server_url_retry_times", defaultValue = "3")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>    public int <span class='instance uncovered' title='Reads: 0 Writes: 0'>CONF_SERVER_URL_RETRY_TIMES</span> = 3;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 用户指定的 下载文件夹, 远程文件下载后会放在这里
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.user_define_download_dir", defaultValue = "./disconf/download")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>    public String <span class='instance uncovered' title='Reads: 0 Writes: 0'>userDefineDownloadDir</span> = "./disconf/download";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取远程配置 重试时休眠时间，默认是5秒
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.conf_server_url_retry_sleep_seconds", defaultValue = "2")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>    public int <span class='instance uncovered' title='Reads: 0 Writes: 0'>confServerUrlRetrySleepSeconds</span> = 2;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 让下载文件夹放在 classpath目录 下
+     *
+     * @author
+     * @since 1.0.0
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @DisInnerConfigAnnotation(name = "disconf.enable_local_download_dir_in_class_path", defaultValue = "true")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l195s0'>    public boolean <span class='instance uncovered' title='Reads: 0 Writes: 0'>enableLocalDownloadDirInClassPath</span> = true;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>197</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public List&lt;String> getHostList() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l198s0'>        return hostList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>201</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setHostList(List&lt;String> hostList) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>        this.hostList = hostList;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l203s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>205</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;String> getIgnoreDisconfKeySet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l206s0'>        return ignoreDisconfKeySet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setIgnoreDisconfKeySet(Set&lt;String> ignoreDisconfKeySet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l210s0'>        this.ignoreDisconfKeySet = ignoreDisconfKeySet;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>211</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l211s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>213</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

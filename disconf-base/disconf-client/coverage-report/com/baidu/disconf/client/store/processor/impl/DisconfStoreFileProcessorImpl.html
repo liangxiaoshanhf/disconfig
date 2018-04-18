@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfStoreFileProcessorImpl.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\store\processor\impl\DisconfStoreFileProcessorImpl.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.store.processor.impl;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import static com.baidu.disconf.client.store.inner.DisconfCenterStore.getInstance;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.addons.properties.ReloadConfigurationMonitor;
+import com.baidu.disconf.client.common.constants.SupportFileTypeEnum;
+import com.baidu.disconf.client.common.model.DisConfCommonModel;
+import com.baidu.disconf.client.common.model.DisconfCenterBaseModel;
+import com.baidu.disconf.client.common.model.DisconfCenterFile;
+import com.baidu.disconf.client.common.model.DisconfCenterFile.FileItemValue;
+import com.baidu.disconf.client.common.update.IDisconfUpdate;
+import com.baidu.disconf.client.store.DisconfStoreProcessor;
+import com.baidu.disconf.client.store.processor.model.DisconfValue;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置文件仓库实现器
+ *
+ * @author liaoqiqi
+ * @version 2014-8-4
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l29s0'>public class DisconfStoreFileProcessorImpl implements DisconfStoreProcessor {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>31</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l31s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfStoreFileProcessorImpl.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void addUpdateCallbackList(String keyName, List&lt;IDisconfUpdate> iDisconfUpdateList) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l39s0 l44s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l39s0 l41s0 l44s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l39s0' title='Executions: 0' class='uncovered'>if (getInstance().getConfFileMap().containsKey(keyName)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>41</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l41s0'>            getInstance().getConfFileMap().get(keyName).getDisconfCommonCallbackModel().getDisconfConfUpdates()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>                    .addAll(iDisconfUpdateList);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public List&lt;IDisconfUpdate> getUpdateCallbackList(String keyName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l54s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l52s0 l57s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l52s0' title='Executions: 0' class='uncovered'>if (getInstance().getConfFileMap().containsKey(keyName)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l54s0'>            return getInstance().getConfFileMap().get(keyName).getDisconfCommonCallbackModel().getDisconfConfUpdates();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>        return new ArrayList&lt;IDisconfUpdate>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public DisConfCommonModel getCommonModel(String keyName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l66s0 l69s0 l70s0 l71s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l66s0 l69s0 l74s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>        DisconfCenterFile disconfCenterFile = getInstance().getConfFileMap().get(keyName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 校验是否存在</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l69s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l69s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l70s0'>            LOGGER.error("cannot find " + keyName + " in store....");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l74s0'>        return disconfCenterFile.getDisConfCommonModel();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public boolean hasThisConf(String keyName) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 配置文件</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l84s0 l85s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l84s0 l87s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l84s0' title='Executions: 0' class='uncovered'>if (!getInstance().getConfFileMap().containsKey(keyName)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>            return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>        return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void inject2Instance(Object object, String fileName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l99s0 l100s0 l101s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l99s0 l107s0 l116s0 l117s0 l156s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l96s0 l99s0 l107s0 l109s0 l116s0 l117s0 l156s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>        DisconfCenterFile disconfCenterFile = getInstance().getConfFileMap().get(fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 校验是否存在</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l99s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l99s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l100s0'>            LOGGER.error("cannot find " + fileName + " in store....");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l101s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 静态类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>106</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l107s0' title='Executions: 0' class='uncovered'>if (object != null)</span> <span id='l107s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 设置object</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>            disconfCenterFile.setObject(object);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 根据类型设置值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 注入实体</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>        Map&lt;String, FileItemValue> keMap = disconfCenterFile.getKeyMaps();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l117s0'>        for (String fileItem : keMap.keySet()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 根据类型设置值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='comment'>                //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 静态类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='comment'>                //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l125s0' title='Executions: 0' class='uncovered'>if (object == null)</span> <span id='l125s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l127s0' title='Executions: 0' class='uncovered'>if (keMap.get(fileItem).isStatic()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>                        LOGGER.debug(fileItem + " is a static field. ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l129s0'>                        keMap.get(fileItem).setValue4StaticFileItem(keMap.get(fileItem).getValue());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    // 非静态类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td>&nbsp;</td>
+      <td><pre class='comment'>                    //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>                } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l137s0'>                    LOGGER.debug(fileItem + " is a non-static field. ");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>139</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                    <span id='l139s0' title='Executions: 0' class='uncovered'>if (keMap.get(fileItem).getValue() == null) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='comment'>                        // 如果仓库值为空，则实例 直接使用默认值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l142s0'>                        Object defaultValue = keMap.get(fileItem).getFieldDefaultValue(object);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l143s0'>                        keMap.get(fileItem).setValue(defaultValue);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l145s0'>                    } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>147</td><td>&nbsp;</td>
+      <td><pre class='comment'>                        // 如果仓库里的值为非空，则实例使用仓库里的值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l148s0'>                        keMap.get(fileItem).setValue4FileItem(object, keMap.get(fileItem).getValue());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l152s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>                LOGGER.error("inject2Instance fileName " + fileName + " " + e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l156s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Object getConfig(String fileName, String keyName) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l164s0 l167s0 l168s0 l169s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l164s0 l167s0 l172s0 l173s0 l174s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l164s0 l167s0 l172s0 l177s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>164</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l164s0'>        DisconfCenterFile disconfCenterFile = getInstance().getConfFileMap().get(fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 校验是否存在</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l167s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l167s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l168s0'>            LOGGER.debug("cannot find " + fileName + " in store....");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l169s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>172</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l172s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile.getKeyMaps().get(keyName) == null) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>173</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l173s0'>            LOGGER.debug("cannot find " + fileName + ", " + keyName + " in store....");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>        return disconfCenterFile.getKeyMaps().get(keyName).getValue();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void inject2Store(String fileName, DisconfValue disconfValue) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/9</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l190s0 l191s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l195s0 l196s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l195s0 l196s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l224s0 l232s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l224s0 l226s0 l230s0 l232s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l224s0 l226s0 l228s0 l230s0 l232s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l202s0 l224s0 l232s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l202s0 l224s0 l226s0 l230s0 l232s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l186s0 l189s0 l194s0 l194s1 l200s0 l201s0 l202s0 l224s0 l226s0 l228s0 l230s0 l232s0')">I: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>186</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l186s0'>        DisconfCenterFile disconfCenterFile = getInstance().getConfFileMap().get(fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 校验是否存在</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l189s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l189s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l190s0'>            LOGGER.error("cannot find " + fileName + " in store....");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l191s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>192</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>194</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l194s0' title='Executions: 0' class='uncovered'>if (disconfValue == null</span> || <span id='l194s1' title='Executions: 0' class='uncovered'>disconfValue.getFileData() == null) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l195s0'>            LOGGER.error("value is null for {}", fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>196</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l196s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>197</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 存储</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>        Map&lt;String, FileItemValue> keMap = disconfCenterFile.getKeyMaps();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l201s0' title='Executions: 0' class='uncovered'>if (keMap.size() > 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>            for (String fileItem : keMap.keySet()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>204</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l204s0'>                Object object = disconfValue.getFileData().get(fileItem);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l205s0' title='Executions: 0' class='uncovered'>if (object == null)</span> <span id='l205s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l206s0'>                    LOGGER.error("cannot find {} to be injected. file content is: {}", fileItem,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l207s0'>                            disconfValue.getFileData().toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l208s0'>                    continue;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>211</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 根据类型设置值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>212</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>214</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l214s0'>                    Object value = keMap.get(fileItem).getFieldValueByType(object);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>215</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l215s0'>                    keMap.get(fileItem).setValue(value);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>217</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l217s0'>                } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l218s0'>                    LOGGER.error("inject2Store filename: " + fileName + " " + e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>219</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>223</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 使用过 XML式配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l224s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile.isTaggedWithNonAnnotationFile()) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>226</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l226s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile.getSupportFileTypeEnum().equals(SupportFileTypeEnum.PROPERTIES)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 如果是采用XML进行配置的，则需要利用spring的reload将数据reload到bean里</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l228s0'>                ReloadConfigurationMonitor.reload();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>230</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l230s0'>            disconfCenterFile.setAdditionalKeyMaps(disconfValue.getFileData());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>231</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>232</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l232s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>238</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void transformScanData(List&lt;DisconfCenterBaseModel> disconfCenterBaseModels) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>240</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l240s0'>        for (DisconfCenterBaseModel disconfCenterFile : disconfCenterBaseModels) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l241s0'>            transformScanData(disconfCenterFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>243</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l243s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>248</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>249</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void transformScanData(DisconfCenterBaseModel disconfCenterBaseModel) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l250s0'>        getInstance().storeOneFile(disconfCenterBaseModel);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>251</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l251s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>256</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>257</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public DisconfCenterBaseModel getConfData(String key) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l259s0 l261s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l259s0 l265s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>259</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l259s0' title='Executions: 0' class='uncovered'>if (getInstance().getConfFileMap().containsKey(key)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>261</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l261s0'>            return getInstance().getConfFileMap().get(key);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>263</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        } else {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>265</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l265s0'>            return null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>266</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>272</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>273</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Set&lt;String> getConfKeySet() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>274</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l274s0'>        return getInstance().getConfFileMap().keySet();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>275</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>280</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>281</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String confToString() {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l283s0 l289s0 l292s0 l294s0 l297s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l283s0 l289s0 l290s0 l294s0 l297s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>283</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l283s0'>        StringBuffer sBuffer = new StringBuffer();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>284</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l284s0'>        sBuffer.append("\n");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>285</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l285s0'>        Map&lt;String, DisconfCenterFile> disMap = getInstance().getConfFileMap();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>286</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l286s0'>        for (String file : disMap.keySet()) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>287</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l287s0'>            sBuffer.append("disconf-file:\t" + file + "\t");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>289</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l289s0' title='Executions: 0' class='uncovered'>if (LOGGER.isDebugEnabled()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>290</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l290s0'>                sBuffer.append(disMap.get(file).toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>291</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l291s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>292</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l292s0'>                sBuffer.append(disMap.get(file).infoString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>293</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>294</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l294s0'>            sBuffer.append("\n");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>295</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>297</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l297s0'>        return sBuffer.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>298</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>300</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>301</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void exclude(Set&lt;String> keySet) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>303</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l303s0'>        for (String key : keySet) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>304</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l304s0'>            getInstance().excludeOneFile(key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>305</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>306</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l306s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>307</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

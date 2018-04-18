@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfFileCoreProcessorImpl.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\core\processor\impl\DisconfFileCoreProcessorImpl.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.core.processor.impl;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.model.DisConfCommonModel;
+import com.baidu.disconf.client.common.model.DisconfCenterFile;
+import com.baidu.disconf.client.common.update.IDisconfUpdatePipeline;
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.core.filetype.FileTypeProcessorUtils;
+import com.baidu.disconf.client.core.processor.DisconfCoreProcessor;
+import com.baidu.disconf.client.fetcher.FetcherMgr;
+import com.baidu.disconf.client.store.DisconfStoreProcessor;
+import com.baidu.disconf.client.store.DisconfStoreProcessorFactory;
+import com.baidu.disconf.client.store.inner.DisconfCenterStore;
+import com.baidu.disconf.client.store.processor.model.DisconfValue;
+import com.baidu.disconf.client.support.registry.Registry;
+import com.baidu.disconf.client.watch.WatchMgr;
+import com.baidu.disconf.core.common.constants.DisConfigTypeEnum;
+import com.baidu.disconf.core.common.utils.GsonUtils;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置文件处理器实现
+ *
+ * @author liaoqiqi
+ * @version 2014-8-4
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class DisconfFileCoreProcessorImpl implements DisconfCoreProcessor {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfFileCoreProcessorImpl.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 监控器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>    private WatchMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>watchMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 抓取器</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l39s0'>    private FetcherMgr <span class='instance uncovered' title='Reads: 0 Writes: 0'>fetcherMgr</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 仓库算子</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l42s0'>    private DisconfStoreProcessor <span class='instance uncovered' title='Reads: 0 Writes: 0'>disconfStoreProcessor</span> = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // bean registry</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>    private Registry <span class='instance uncovered' title='Reads: 0 Writes: 0'>registry</span> = null;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>    public DisconfFileCoreProcessorImpl(WatchMgr watchMgr, FetcherMgr fetcherMgr, Registry registry) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>        this.fetcherMgr = fetcherMgr;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l50s0'>        this.watchMgr = watchMgr;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>        this.registry = registry;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     *
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void processAllItems() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 配置文件列表处理
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>        for (String fileName : disconfStoreProcessor.getConfKeySet()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>65</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l65s0'>            processOneItem(fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void processOneItem(String key) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>        LOGGER.debug("==============\tstart to process disconf file: " + key +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l73s0'>                "\t=============================");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>        DisconfCenterFile disconfCenterFile = (DisconfCenterFile) disconfStoreProcessor.getConfData(key);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l78s0'>            updateOneConfFile(key, disconfCenterFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l79s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>            LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l82s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 更新 一個配置文件, 下载、注入到仓库、Watch 三步骤
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void updateOneConfFile(String fileName, DisconfCenterFile disconfCenterFile) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/7</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l90s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l125s0 l134s0 l140s0 l153s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l125s0 l134s0 l140s0 l144s0 l145s0 l150s0 l153s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l125s0 l134s0 l140s0 l144s0 l145s0 l146s0 l153s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l106s0 l121s0 l125s0 l134s0 l140s0 l153s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l106s0 l121s0 l125s0 l134s0 l140s0 l144s0 l145s0 l150s0 l153s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l89s0 l93s0 l99s0 l106s0 l121s0 l125s0 l134s0 l140s0 l144s0 l145s0 l146s0 l153s0')">G: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>89</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l89s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l89s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>            throw new Exception("cannot find disconfCenterFile " + fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>93</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l93s0'>        String filePath = fileName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l94s0'>        Map&lt;String, Object> dataMap = new HashMap&lt;String, Object>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 开启disconf才需要远程下载, 否则就本地就好</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l99s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().ENABLE_DISCONF) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>101</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 下载配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l106s0'>                String url = disconfCenterFile.getRemoteServerUrl();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l107s0'>                filePath = fetcherMgr.downloadFileFromServer(url, fileName, disconfCenterFile.getFileDir());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='comment'>                //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // 下载失败了, 尝试使用本地的配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='comment'>                //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l115s0'>                LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>                LOGGER.warn("using local properties in class path: " + fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>118</td><td>&nbsp;</td>
+      <td><pre class='comment'>                // change file path</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l119s0'>                filePath = fileName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l121s0'>            LOGGER.debug("download ok.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l125s0'>            dataMap = FileTypeProcessorUtils.getKvMap(disconfCenterFile.getSupportFileTypeEnum(),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l126s0'>                    disconfCenterFile.getFilePath());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l127s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>            LOGGER.error("cannot get kv data for " + filePath, e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>131</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 注入到仓库中</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>        disconfStoreProcessor.inject2Store(fileName, new DisconfValue(null, dataMap));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l135s0'>        LOGGER.debug("inject ok.");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 开启disconf才需要进行watch</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l140s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().ENABLE_DISCONF) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // Watch</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>            DisConfCommonModel disConfCommonModel = disconfStoreProcessor.getCommonModel(fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l145s0' title='Executions: 0' class='uncovered'>if (watchMgr != null)</span> <span id='l145s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l146s0'>                watchMgr.watchPath(this, disConfCommonModel, fileName, DisConfigTypeEnum.FILE,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>                        GsonUtils.toJson(disconfCenterFile.getKV()));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l148s0'>                LOGGER.debug("watch ok.");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l149s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l150s0'>                LOGGER.warn("cannot monitor {} because watch mgr is null", fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>151</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>152</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 更新消息: 某个配置文件 + 回调
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>159</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void updateOneConfAndCallback(String key) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 更新 配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l162s0'>        updateOneConf(key);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>164</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 回调</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>165</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l165s0'>        DisconfCoreProcessUtils.callOneConf(disconfStoreProcessor, key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l166s0'>        callUpdatePipeline(key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l167s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @param key
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void callUpdatePipeline(String key) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l174s0 l175s0 l188s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l174s0 l175s0 l176s0 l180s0 l188s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l174s0 l175s0 l176s0 l180s0 l182s0 l188s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>        Object object = disconfStoreProcessor.getConfData(key);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l175s0' title='Executions: 0' class='uncovered'>if (object != null)</span> <span id='l175s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l176s0'>            DisconfCenterFile disconfCenterFile = (DisconfCenterFile) object;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>178</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l178s0'>            IDisconfUpdatePipeline iDisconfUpdatePipeline =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>179</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l179s0'>                    DisconfCenterStore.getInstance().getiDisconfUpdatePipeline();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l180s0' title='Executions: 0' class='uncovered'>if (iDisconfUpdatePipeline != null)</span> <span id='l180s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>181</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                try {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>182</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l182s0'>                    iDisconfUpdatePipeline.reloadDisconfFile(key, disconfCenterFile.getFilePath());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l183s0'>                } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l184s0'>                    LOGGER.error(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>188</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l188s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 更新消息：某个配置文件
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void updateOneConf(String fileName) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l195s0 l197s0 l205s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l195s0 l197s0 l200s0 l205s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>195</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l195s0'>        DisconfCenterFile disconfCenterFile = (DisconfCenterFile) disconfStoreProcessor.getConfData(fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>197</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l197s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile != null)</span> <span id='l197s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 更新仓库</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l200s0'>            updateOneConfFile(fileName, disconfCenterFile);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>202</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 更新实例</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l203s0'>            inject2OneConf(fileName, disconfCenterFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>204</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l205s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 为某个配置文件进行注入实例中
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private void inject2OneConf(String fileName, DisconfCenterFile disconfCenterFile) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l212s0 l213s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l212s0 l225s0 l226s0 l237s0 l242s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l212s0 l225s0 l226s0 l227s0 l237s0 l242s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>212</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l212s0' title='Executions: 0' class='uncovered'>if (disconfCenterFile == null)</span> <span id='l212s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l213s0'>            return;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>214</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>216</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>218</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>219</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 获取实例</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='comment'>            //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>222</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            Object object;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>225</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l225s0'>                object = disconfCenterFile.getObject();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>226</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l226s0' title='Executions: 0' class='uncovered'>if (object == null)</span> <span id='l226s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l227s0'>                    object = registry.getFirstByType(disconfCenterFile.getCls(), false, true);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>230</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l230s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>232</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l232s0'>                LOGGER.error(e.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>233</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l233s0'>                object = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>234</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='comment'>            // 注入实体中</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l237s0'>            disconfStoreProcessor.inject2Instance(object, fileName);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>239</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l239s0'>        } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>240</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l240s0'>            LOGGER.warn(e.toString(), e);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l242s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>244</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>245</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void inject2Conf() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 配置文件列表处理
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l250s0'>        for (String key : disconfStoreProcessor.getConfKeySet()) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>252</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l252s0'>            LOGGER.debug("==============\tstart to inject value to disconf file item instance: " + key +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>253</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l253s0'>                    "\t=============================");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>255</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l255s0'>            DisconfCenterFile disconfCenterFile = (DisconfCenterFile) disconfStoreProcessor.getConfData(key);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>257</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l257s0'>            inject2OneConf(key, disconfCenterFile);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>258</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l259s0'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

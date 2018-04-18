@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisconfCenterFile.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\common\model\DisconfCenterFile.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.common.model;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.common.constants.SupportFileTypeEnum;
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.support.utils.ClassUtils;
+import com.baidu.disconf.core.common.utils.ClassLoaderUtil;
+import com.baidu.disconf.core.common.utils.OsUtil;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 配置文件表示
+ *
+ * @author liaoqiqi
+ * @version 2014-5-20
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l24s0'>public class DisconfCenterFile extends DisconfCenterBaseModel {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l26s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisconfCenterFile.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // -----key: 配置文件中的项名</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // -----value: 默认值</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l30s0'>    private Map&lt;String, FileItemValue> keyMaps = new HashMap&lt;String, FileItemValue>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 额外的配置数据，非注解式使用它来存储</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l33s0'>    private Map&lt;String, Object> additionalKeyMaps = new HashMap&lt;String, Object>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 是否是非注解注入方式</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l36s0'>    private boolean isTaggedWithNonAnnotationFile = false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>38</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置文件类</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private Class&lt;?> cls;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 文件名</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>42</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String fileName;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 配置文件 指定路径下</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    private String targetDirPath;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td>&nbsp;</td>
+      <td><pre class='comment'>    // 文件类型</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>    private SupportFileTypeEnum supportFileTypeEnum = SupportFileTypeEnum.ANY;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Class&lt;?> getCls() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l51s0'>        return cls;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setCls(Class&lt;?> cls) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l55s0'>        this.cls = cls;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l56s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getFileName() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        return fileName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setFileName(String fileName) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l63s0'>        this.fileName = fileName;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l64s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;String, FileItemValue> getKeyMaps() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l67s0'>        return keyMaps;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setKeyMaps(Map&lt;String, FileItemValue> keyMaps) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l71s0'>        this.keyMaps = keyMaps;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l72s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>74</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;String, Object> getAdditionalKeyMaps() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>        return additionalKeyMaps;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>78</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setAdditionalKeyMaps(Map&lt;String, Object> additionalKeyMaps) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l79s0'>        this.additionalKeyMaps = additionalKeyMaps;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l80s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public SupportFileTypeEnum getSupportFileTypeEnum() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l83s0'>        return supportFileTypeEnum;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setSupportFileTypeEnum(SupportFileTypeEnum supportFileTypeEnum) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>87</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l87s0'>        this.supportFileTypeEnum = supportFileTypeEnum;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l88s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>90</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public boolean isTaggedWithNonAnnotationFile() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>        return isTaggedWithNonAnnotationFile;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setIsTaggedWithNonAnnotationFile(boolean isTaggedWithNonAnnotationFile) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l95s0'>        this.isTaggedWithNonAnnotationFile = isTaggedWithNonAnnotationFile;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l96s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getTargetDirPath() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l99s0'>        return targetDirPath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>102</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public void setTargetDirPath(String targetDirPath) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l103s0'>        this.targetDirPath = targetDirPath;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l104s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>106</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>107</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l108s0'>        return "\n\tDisconfCenterFile [\n\tkeyMaps=" + keyMaps + "\n\tcls=" + cls + "\n\tfileName=" + fileName</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>                + "\n\ttargetDirPath=" + targetDirPath +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l110s0'>                super.toString() + "]";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String infoString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>115</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l115s0'>        return "\n\tDisconfCenterFile [\n\tkeyMaps=" + keyMaps + "\n" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>                "\tadditionalKeyMaps=" + additionalKeyMaps + "\n\tcls=" + cls + super.infoString() + "]";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 获取可以表示的KeyMap对
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public Map&lt;String, Object> getKV() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 非注解式的</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l125s0' title='Executions: 0' class='uncovered'>if (keyMaps.size() == 0) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l126s0'>            return additionalKeyMaps;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>129</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 注解式的</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>131</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l132s0'>        Map&lt;String, Object> map = new HashMap&lt;String, Object>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>133</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l133s0'>        for (String key : keyMaps.keySet()) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>134</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l134s0'>            map.put(key, keyMaps.get(key).getValue());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>137</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l137s0'>        return map;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 配置文件的路径
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>143</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getFilePath() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 不放到classpath, 则文件路径根据 userDefineDownloadDir 来设置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l146s0' title='Executions: 0' class='uncovered'>if (!DisClientConfig.getInstance().enableLocalDownloadDirInClassPath) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>            return OsUtil.pathJoin(DisClientConfig.getInstance().userDefineDownloadDir, fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l150s0' title='Executions: 0' class='uncovered'>if (targetDirPath != null)</span> <span id='l150s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l152s0' title='Executions: 0' class='uncovered'>if (targetDirPath.startsWith("/")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l153s0'>                return OsUtil.pathJoin(targetDirPath, fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>156</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l156s0'>            return OsUtil.pathJoin(ClassLoaderUtil.getClassPath(), targetDirPath, fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>157</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>159</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l159s0'>        return OsUtil.pathJoin(ClassLoaderUtil.getClassPath(), fileName);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>160</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 配置文件的路径
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>165</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public String getFileDir() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 获取相对于classpath的路径</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l168s0' title='Executions: 0' class='uncovered'>if (targetDirPath != null)</span> <span id='l168s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>170</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l170s0' title='Executions: 0' class='uncovered'>if (targetDirPath.startsWith("/")) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l171s0'>                return OsUtil.pathJoin(targetDirPath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>172</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>            return OsUtil.pathJoin(ClassLoaderUtil.getClassPath(), targetDirPath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l177s0'>        return ClassLoaderUtil.getClassPath();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * 配置文件Item项表示，包括了值，还有其类型
+     *
+     * @author liaoqiqi
+     * @version 2014-6-16
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static class FileItemValue {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private Object value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private Field field;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>190</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        private Method setMethod;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>192</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public Object getValue() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l193s0'>            return value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>196</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public void setValue(Object value) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>197</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l197s0'>            this.value = value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l198s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>200</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public void setField(Field field) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l201s0'>            this.field = field;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l202s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 是否是静态域
+         *
+         * @return
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public boolean isStatic() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l210s0'>            return Modifier.isStatic(field.getModifiers());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>211</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 设置value, 优先使用 setter method, 然后其次是反射
+         *
+         * @param value
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public Object setValue4StaticFileItem(Object value) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l221s0 l224s0 l231s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l221s0 l222s0 l231s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l221s0' title='Executions: 0' class='uncovered'>if (setMethod != null)</span> <span id='l221s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l222s0'>                    setMethod.invoke(null, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l223s0'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l224s0'>                    field.set(null, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>225</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>227</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l227s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l228s0'>                LOGGER.warn(e.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>231</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l231s0'>            return value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>232</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>234</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public Object setValue4FileItem(Object object, Object value) throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            try {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/2</span>
+        <span class='uncovered' onclick="showPath(this,'l237s0 l240s0 l246s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l237s0 l238s0 l246s0')">B: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>                <span id='l237s0' title='Executions: 0' class='uncovered'>if (setMethod != null)</span> <span id='l237s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>238</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l238s0'>                    setMethod.invoke(object, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>239</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l239s0'>                } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>240</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l240s0'>                    field.set(object, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>                }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l242s0'>            } catch (Exception e) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>243</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l243s0'>                LOGGER.warn(e.toString());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>244</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>246</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l246s0'>            return value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>247</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>        /**
+         * 返回值
+         *
+         * @param fieldValue
+         *
+         * @return
+         *
+         * @throws Exception
+         */</div><span>        /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>258</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public Object getFieldValueByType(Object fieldValue) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l259s0'>            return ClassUtils.getValeByType(field.getType(), fieldValue);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>262</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public Object getFieldDefaultValue(Object object) throws Exception {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>263</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l263s0'>            return field.get(object);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>264</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>266</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>268</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l268s0'>            return "FileItemValue{" +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>269</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l269s0'>                    "value=" + value +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>270</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l270s0'>                    ", field=" + field +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>271</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l271s0'>                    ", setMethod=" + setMethod +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>272</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l272s0'>                    '}';</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>273</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>275</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public FileItemValue(Object value, Field field) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>276</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l276s0'>            super();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>277</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l277s0'>            this.value = value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>278</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l278s0'>            this.field = field;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>279</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l279s0'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>281</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        public FileItemValue(Object value, Field field, Method setMethod) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>282</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l282s0'>            super();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>283</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l283s0'>            this.value = value;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>284</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l284s0'>            this.field = field;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>285</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l285s0'>            this.setMethod = setMethod;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>286</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l286s0'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>287</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>288</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

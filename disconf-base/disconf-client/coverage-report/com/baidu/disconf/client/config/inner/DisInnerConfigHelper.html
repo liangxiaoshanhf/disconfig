@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - DisInnerConfigHelper.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>disconf-client\src\main\java\com\baidu\disconf\client\config\inner\DisInnerConfigHelper.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.baidu.disconf.client.config.inner;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.baidu.disconf.client.config.DisClientConfig;
+import com.baidu.disconf.client.config.DisClientSysConfig;
+import com.baidu.disconf.client.support.utils.StringUtil;
+import com.baidu.disconf.core.common.utils.ClassLoaderUtil;
+import com.baidu.disconf.core.common.utils.OsUtil;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>/**
+ * 用户配置、系统配置 的校验
+ *
+ * @author liaoqiqi
+ * @version 2014-6-6
+ */</div><span>/*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l23s0'>public class DisInnerConfigHelper {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l25s0'>    protected static final Logger LOGGER = LoggerFactory.getLogger(DisInnerConfigHelper.class);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @throws Exception
+     * @Description: 校验用户配置文件是否正常
+     * @author liaoqiqi
+     * @date 2013-6-13
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void verifyUserConfig() throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 服务器相关</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 服务器地址</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/16</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l44s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l57s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l66s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l75s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l105s0 l118s0 l128s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l105s0 l118s0 l120s0 l122s0 l125s0 l128s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l105s0 l118s0 l120s0 l122s0 l123s0 l128s0')">G: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l128s0')">H: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l120s0 l122s0 l125s0 l128s0')">I: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l120s0 l122s0 l123s0 l128s0')">J: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l105s0 l118s0 l128s0')">K: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l105s0 l118s0 l120s0 l122s0 l125s0 l128s0')">L: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l105s0 l118s0 l120s0 l122s0 l123s0 l128s0')">M: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l128s0')">N: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l120s0 l122s0 l125s0 l128s0')">O: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l42s0 l47s0 l55s0 l59s0 l64s0 l68s0 l73s0 l77s0 l88s0 l89s0 l98s0 l100s0 l101s0 l101s1 l105s0 l118s0 l120s0 l122s0 l123s0 l128s0')">P: 0</span>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>42</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l42s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientConfig.getInstance().CONF_SERVER_HOST)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l44s0'>            throw new Exception("settings: " + DisClientConfig.CONF_SERVER_HOST_NAME + " cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>        DisClientConfig.getInstance()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l48s0'>                .setHostList(StringUtil.parseStringToStringList(DisClientConfig.getInstance().CONF_SERVER_HOST, ","));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l49s0'>        LOGGER.info(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l50s0'>                "SERVER " + DisClientConfig.CONF_SERVER_HOST_NAME + ": " + DisClientConfig.getInstance().getHostList());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 版本</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>55</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l55s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientConfig.getInstance().VERSION)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>            throw new Exception("settings: " + DisClientConfig.VERSION_NAME + " cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>        LOGGER.info("SERVER " + DisClientConfig.VERSION_NAME + ": " + DisClientConfig.getInstance().VERSION);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // APP名</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l64s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientConfig.getInstance().APP)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l66s0'>            throw new Exception("settings: " + DisClientConfig.APP_NAME + " cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l68s0'>        LOGGER.info("SERVER " + DisClientConfig.APP_NAME + ": " + DisClientConfig.getInstance().APP);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 环境</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l73s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientConfig.getInstance().ENV)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l75s0'>            throw new Exception("settings: " + DisClientConfig.ENV_NAME + "  cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l77s0'>        LOGGER.info("SERVER " + DisClientConfig.ENV_NAME + ": " + DisClientConfig.getInstance().ENV);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>79</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 是否使用远程的配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>81</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l81s0'>        LOGGER.info("SERVER disconf.enable.remote.conf: " + DisClientConfig.getInstance().ENABLE_DISCONF);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // debug mode</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l85s0'>        LOGGER.info("SERVER disconf.debug: " + DisClientConfig.getInstance().DEBUG);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 用户下载文件夹</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l88s0' title='Executions: 0' class='uncovered'>if (!StringUtils.isEmpty(DisClientConfig.getInstance().userDefineDownloadDir)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l89s0'>            OsUtil.makeDirs(DisClientConfig.getInstance().userDefineDownloadDir);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l90s0'>            LOGGER.info("SERVER disconf.user_define_download_dir: " + DisClientConfig.getInstance()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l91s0'>                    .userDefineDownloadDir);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 忽略哪些分布式配置</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l97s0'>        List&lt;String> ignoreDisconfList =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l98s0'>                StringUtil.parseStringToStringList(DisClientConfig.getInstance().IGNORE_DISCONF_LIST, ",");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l99s0'>        Set&lt;String> keySet = new HashSet&lt;String>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l100s0' title='Executions: 0' class='uncovered'>if (ignoreDisconfList != null)</span> <span id='l100s1' title='Executions: 0' class='uncovered'>{</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l101s0'>            for (String ignoreData : ignoreDisconfList) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l102s0'>                keySet.add(ignoreData.trim());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>103</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>104</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>105</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l105s0'>        DisClientConfig.getInstance().setIgnoreDisconfKeySet(keySet);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>106</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l106s0'>        LOGGER.info("SERVER disconf.ignore: " + DisClientConfig.getInstance().getIgnoreDisconfKeySet());</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 重试</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l109s0'>        LOGGER.debug("SERVER disconf.conf_server_url_retry_times: " + DisClientConfig</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l110s0'>                .getInstance().CONF_SERVER_URL_RETRY_TIMES);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>112</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l112s0'>        LOGGER.debug("SERVER disconf.conf_server_url_retry_sleep_seconds: " +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l113s0'>                DisClientConfig.getInstance().confServerUrlRetrySleepSeconds);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>115</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l115s0'>        LOGGER.debug("SERVER disconf.enable_local_download_dir_in_class_path: " + DisClientConfig</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>116</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l116s0'>                .getInstance().enableLocalDownloadDirInClassPath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 是否将文件放在classpath目录下</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l118s0' title='Executions: 0' class='uncovered'>if (DisClientConfig.getInstance().enableLocalDownloadDirInClassPath) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>120</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l120s0'>            String classpath = ClassLoaderUtil.getClassPath();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>            <span id='l122s0' title='Executions: 0' class='uncovered'>if (classpath.isEmpty()) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l123s0'>                LOGGER.warn("CLASSPATH is null. we will not transfer your config file to classpath in the following");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l124s0'>            } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l125s0'>                LOGGER.debug("classpath: " + classpath);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l128s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>    /**
+     * @throws Exception
+     * @Description: 校验系统配置文件是否正常
+     * @date 2013-6-13
+     */</div><span>    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>135</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    public static void verifySysConfig() throws Exception {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 服务器相关</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>141</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // CONF_SERVER_STORE_ACTION</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/5</span>
+        <span class='uncovered' onclick="showPath(this,'l142s0 l144s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l142s0 l146s0 l150s0 l152s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l142s0 l146s0 l150s0 l154s0 l158s0 l160s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l142s0 l146s0 l150s0 l154s0 l158s0 l162s0 l169s0 l170s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l142s0 l146s0 l150s0 l154s0 l158s0 l162s0 l169s0 l174s0 l176s0')">E: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>142</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l142s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientSysConfig.getInstance().CONF_SERVER_STORE_ACTION)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>144</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l144s0'>            throw new Exception("settings: CONF_SERVER_STORE_ACTION cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l146s0'>        LOGGER.debug("SERVER disconf.conf_server_store_action: " + DisClientSysConfig</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l147s0'>                .getInstance().CONF_SERVER_STORE_ACTION);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // CONF_SERVER_ZOO_ACTION</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>150</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l150s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientSysConfig.getInstance().CONF_SERVER_ZOO_ACTION)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>152</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l152s0'>            throw new Exception("settings: CONF_SERVER_ZOO_ACTION cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l154s0'>        LOGGER.debug(</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l155s0'>                "SERVER disconf.conf_server_zoo_action: " + DisClientSysConfig.getInstance().CONF_SERVER_ZOO_ACTION);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>157</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // CONF_SERVER_MASTER_NUM_ACTION</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>158</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l158s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientSysConfig.getInstance().CONF_SERVER_MASTER_NUM_ACTION)) {</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>160</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l160s0'>            throw new Exception("settings: CONF_SERVER_MASTER_NUM_ACTION  cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l162s0'>        LOGGER.debug("SERVER disconf.conf_server_master_num_action: " +</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>163</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l163s0'>                DisClientSysConfig.getInstance().CONF_SERVER_MASTER_NUM_ACTION);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>165</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>166</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // 本地相关</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>167</td><td>&nbsp;</td>
+      <td><pre class='comment'>        //</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>        <span id='l169s0' title='Executions: 0' class='uncovered'>if (StringUtils.isEmpty(DisClientSysConfig.getInstance().LOCAL_DOWNLOAD_DIR)) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l170s0'>            throw new Exception("settings: LOCAL_TMP_DIR cannot find");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>171</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>173</td><td>&nbsp;</td>
+      <td><pre class='comment'>        // LOCAL_DOWNLOAD_DIR</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>174</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l174s0'>        LOGGER.debug("SERVER disconf.local_download_dir: " + DisClientSysConfig.getInstance().LOCAL_DOWNLOAD_DIR);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>175</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l175s0'>        OsUtil.makeDirs(DisClientSysConfig.getInstance().LOCAL_DOWNLOAD_DIR);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l176s0'>    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>178</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>
