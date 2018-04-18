@@ -1,0 +1,1 @@
+修复zookeeper断网后再连接不能回调问题，并支持springboot
